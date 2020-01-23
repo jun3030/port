@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200123071608) do
+ActiveRecord::Schema.define(version: 20200123151411) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -18,24 +18,10 @@ ActiveRecord::Schema.define(version: 20200123071608) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "title"
-    t.text "purpose_of_use"
-    t.string "prefectures"
-    t.string "responsible_part"
-    t.string "genre"
-    t.integer "age"
-    t.string "sex"
-    t.string "favorite_artist"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.string "image"
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'test' for column 'purpose_of_use'
 
 end

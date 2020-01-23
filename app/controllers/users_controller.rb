@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :profile, :update_profile]
+  before_action :set_user, only: [:show, :edit_profile, :update_profile]
   
   def new
     @user = User.new
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = '新規作成に成功しました。'
-      redirect_to user_edit_profile_url(@user)
+      redirect_to users_profile_url(@user)
     else
       render :new
     end
@@ -19,10 +19,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
   
-  def show
+  def edit_profile
   end
   
-  def profile
+  def update_profile
   end
   
   private

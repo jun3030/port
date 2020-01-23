@@ -2,10 +2,6 @@ User.create!(name: "Sample User",
              email: "sample@email.com",
              password: "password",
              password_confirmation: "password",
-             image: "default.png")
-             
-Post.create!(title: "メンバー募集",
-             content: "ギター探してます",
              age: 20,
              sex: "男",
              prefectures: "京都",
@@ -13,6 +9,10 @@ Post.create!(title: "メンバー募集",
              favorite_artist: "duran",
              genre: "ブルース",
              responsible_part: "ギター",
+             image: "default.png")
+             
+Post.create!(title: "メンバー募集",
+             content: "ギター探してます",
              user_id: 1)
              
              
