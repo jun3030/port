@@ -1,0 +1,10 @@
+<h1>Posts#index</h1>
+
+<div class="main posts-index">
+    <div class="container">
+        <% @posts.each do |post| %>
+          <%= post.title %>
+          <%= post.content %>
+        <% end %>
+    </div>
+</div>
