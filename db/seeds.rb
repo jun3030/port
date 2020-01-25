@@ -4,7 +4,7 @@ User.create!(name: "Sample User",
              password_confirmation: "password",
              age: 20,
              sex: "男",
-             prefectures: "京都",
+             
              purpose_of_use: "音楽好きと繋がりたい",
              favorite_artist: "duran",
              genre: "ブルース",

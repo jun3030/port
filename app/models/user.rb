@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  
+  
   has_many :posts, dependent: :destroy
   
   before_save { self.email = email.downcase }
@@ -10,4 +12,5 @@ class User < ApplicationRecord
                     uniqueness: true    
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
+  
 end

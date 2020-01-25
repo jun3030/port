@@ -1,2 +1,38 @@
 <h1>プロフィール設定</h1>
-
+:purpose_of_use, :prefectures, :responsible_part, :genre, :favorite_artist
+<table class="table table-bordered table-striped">
+  <%= form_with(model: @user, local: true) do |f| %>
+  <tr>
+    <th>使用目的</th>
+    <td><%= f.text_field :purpose_of_use %></td>
+  </tr>
+  <tr>
+    <th>名前</th>
+    <td><%= f.text_field :name %></td>
+  </tr> 
+  <tr>
+    <th>年齢</th>
+    <td><%= f.number_field :age %></td>
+  </tr>
+  <tr>
+    <th>性別</th>
+    <td><%= f.select :name, ['男', '女'], {include_blank: '選択ボックス'}, class: 'sample' %><td>
+  </tr>
+  <tr>
+    <th>都道府県</th>
+    <td><%=  %></td>
+  </tr>
+  <tr>
+    <th>使用楽器</th>
+    <td><%=  %></td>
+  </tr>
+  <tr>
+    <th>好きな音楽シャンル</th>
+    <td><%=  %></td>
+  </tr>
+  <tr>
+    <th>好きなアーティスト</th>
+    <td><%=  %></td>
+  </tr>
+  <% end %>
+</table>

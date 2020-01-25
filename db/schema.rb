@@ -21,7 +21,21 @@ ActiveRecord::Schema.define(version: 20200123151411) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'test' for column 'purpose_of_use'
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "image"
+    t.text "purpose_of_use"
+    t.integer "prefecture", default: 0, null: false
+    t.string "responsible_part"
+    t.string "genre"
+    t.integer "age"
+    t.string "sex"
+    t.string "favorite_artist"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
 
 end
