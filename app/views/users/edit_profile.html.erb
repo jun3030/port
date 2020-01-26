@@ -1,13 +1,12 @@
 <h1>プロフィール設定</h1>
-:purpose_of_use, :prefectures, :responsible_part, :genre, :favorite_artist
+<%= form_with(model: @user, url: update_profile_path(@user), method: :patch, local: true) do |f| %>
 <table class="table table-bordered table-striped">
-  <%= form_with(model: @user, local: true) do |f| %>
   <tr>
     <th>使用目的</th>
     <td><%= f.text_field :purpose_of_use %></td>
   </tr>
   <tr>
-    <th>名前</th>
+    <th>名前<span class="required">必須</span></th>
     <td><%= f.text_field :name %></td>
   </tr> 
   <tr>
@@ -16,23 +15,38 @@
   </tr>
   <tr>
     <th>性別</th>
-    <td><%= f.select :name, ['男', '女'], {include_blank: '選択ボックス'}, class: 'sample' %><td>
+    <td><%= f.select :name, ['男', '女'], {include_blank: '---'}, class: 'sample' %><td>
   </tr>
   <tr>
     <th>都道府県</th>
-    <td><%=  %></td>
+    <td><%= f.select :prefecture, User.prefectures.keys, {} %></td>
   </tr>
   <tr>
     <th>使用楽器</th>
-    <td><%=  %></td>
-  </tr>
+    <td><%= f.select :responsible_part, User.responsible_parts.keys, {} %></td>
   <tr>
     <th>好きな音楽シャンル</th>
-    <td><%=  %></td>
+    <td><%= f.select :genre, User.genres.keys, {}, include_blank: true %></td>
   </tr>
   <tr>
     <th>好きなアーティスト</th>
-    <td><%=  %></td>
+    <td><%= f.text_field :favorite_artist %></td>
   </tr>
-  <% end %>
+  <tr>
+    <th>好きなアーティスト</th>
+    <td><%= f.text_field :favorite_artist %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td><%= f.password_field :password %></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  
 </table>
+<div class="center">
+  <%= f.submit "決定", class: "btn btn-primary btn-lg btn-block" %>
+</div>
+  <% end %>

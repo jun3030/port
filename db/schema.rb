@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20200123151411) do
     t.string "image"
     t.text "purpose_of_use"
     t.integer "prefecture", default: 0, null: false
-    t.string "responsible_part"
+    t.integer "responsible_part", default: 0, null: false
     t.string "genre"
     t.integer "age"
     t.string "sex"
