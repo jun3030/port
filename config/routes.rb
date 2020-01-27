@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
  
-  
   get 'posts/index'
-  resources :users do
-  end
   
   get 'users/:id/edit_profile', to: 'users#edit_profile', as: :users_profile
   patch 'users/:id/update_profile', to: 'users#update_profile', as: :update_profile
+  
+  resources :users do
+  end
+ 
  
 end

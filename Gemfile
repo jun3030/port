@@ -12,6 +12,7 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 gem 'jp_prefecture'
 gem 'jquery-rails' 
+gem 'rinku'
 
 group :development, :test do
   gem 'sqlite3'

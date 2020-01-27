@@ -1,5 +1,12 @@
 <h1>プロフィール設定</h1>
-<%= form_with(model: @user, url: update_profile_path(@user), method: :patch, local: true) do |f| %>
+
+<%= form_with(model: @user, url: update_profile_path, local: true) do |f| %>
+
+<div class="center">
+  <%= image_tag "/user_images/#{@user.image}" %><br>
+  <a href="https://oursounds.net/member/profileimg/"><p class="profile-btn">プロフィール画像変更</p></a>
+</div>
+
 <table class="table table-bordered table-striped">
   <tr>
     <th>使用目的</th>
@@ -15,7 +22,7 @@
   </tr>
   <tr>
     <th>性別</th>
-    <td><%= f.select :name, ['男', '女'], {include_blank: '---'}, class: 'sample' %><td>
+    <td><%= f.select :sex, ['男', '女'], {include_blank: '---'}, class: 'sample' %></td>
   </tr>
   <tr>
     <th>都道府県</th>
@@ -33,20 +40,15 @@
     <td><%= f.text_field :favorite_artist %></td>
   </tr>
   <tr>
-    <th>好きなアーティスト</th>
-    <td><%= f.text_field :favorite_artist %></td>
+    <th>自己紹介文</th>
+    <td><%= f.text_area :self_introduction, class: "form-control" %></td>
   </tr>
-  <tr>
-    <th>パスワード</th>
-    <td><%= f.password_field :password %></td>
-  </tr>
-  <tr>
-    <th>パスワード</th>
-    <td><%= f.password_field :password_confirmation %></td>
-  </tr>
-  
+
 </table>
 <div class="center">
   <%= f.submit "決定", class: "btn btn-primary btn-lg btn-block" %>
 </div>
   <% end %>
+  
+  <%= raw Rinku.auto_link(h(User.first.posts.where.not(url: nil).pluck(:url))) %>
+  

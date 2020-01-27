@@ -7,14 +7,21 @@ class User < ApplicationRecord
 
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 100 },
+  validates :email, presence: true, on: :create, length: { maximum: 100 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true    
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, on: :create, length: { minimum: 6 }
+  
+  validates :purpose_of_use, presence: true, on: :update_profile
+  validates :prefecture, presence: true, on: :update_profile
+  validates :responsible_part, presence: true, on: :update_profile
+  validates :age, presence: true, on: :update_profile
+  validates :sex, presence: true, on: :update_profile
+  validates :self_introduction, length: { maximum: 15000 }
+  
   
   enum prefecture:{
-     "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
      茨城県:8,栃木県:9,群馬県:10,埼玉県:11,千葉県:12,東京都:13,神奈川県:14,
      新潟県:15,富山県:16,石川県:17,福井県:18,山梨県:19,長野県:20,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200123151411) do
+ActiveRecord::Schema.define(version: 20200127024029) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20200123151411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "title"
+    t.string "url"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 20200123151411) do
     t.integer "age"
     t.string "sex"
     t.string "favorite_artist"
+    t.text "self_introduction"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

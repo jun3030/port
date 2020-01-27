@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @user[:image] = "default.png"
     if @user.save
       log_in @user # 保存成功後、ログインします。
       flash[:success] = '新規作成に成功しました。'
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
   end
   
   def update_profile
-    if @user.update(profile_params)
+    if  @user.update(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
@@ -42,10 +43,8 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :sex, :purpose_of_use, :prefecture, :responsible_part, :genre, :favorite_artist, :self_introduction)
   end
   
-  def profile_params
-    params.require(:user).permit(:name, :age, :sex, :purpose_of_use, :prefecture, :responsible_part, :genre, :favorite_artist, :password, :password_confirmation)
-  end
+ 
 end
