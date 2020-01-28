@@ -2,11 +2,10 @@
   <div class="container">
       <div class="form-body">
         <!-- 次の行からform_tagを使い、編集内容を送信できるようにしましょう(endの忘れに注意です) -->
-        <%= form_tag update_picture_path, method: :patch, multipart: true do %>
+        <%= form_with(model: @user, url: update_profile_path, method: :patsh) do |f| %>
         
-        <p>プロフィール画像</p>
-        <input name="image" type=file>
-        <input type="submit" value="保存">
+        <%= f.label :image %>
+　　    <%= f.file_field :image %> 
         <% end %>
       </div>
   </div>

@@ -13,6 +13,8 @@ gem 'jbuilder',     '~> 2.5'
 gem 'jp_prefecture'
 gem 'jquery-rails' 
 gem 'rinku'
+gem 'carrierwave'
+gem 'rmagick'
 
 group :development, :test do
   gem 'sqlite3'

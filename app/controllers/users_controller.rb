@@ -28,7 +28,6 @@ class UsersController < ApplicationController
   
   def update_profile
     if  @user.update(user_params)
-      @user.email = params[:email]
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
@@ -67,7 +66,7 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :age, :sex, :purpose_of_use, :prefecture, :responsible_part, :genre, :favorite_artist, :self_introduction)
+    params.require(:user).permit(:name, :email, :image, :password, :password_confirmation, :age, :sex, :purpose_of_use, :prefecture, :responsible_part, :genre, :favorite_artist, :self_introduction)
   end
   
  
