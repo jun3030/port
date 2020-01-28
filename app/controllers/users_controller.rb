@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: [:show, :edit_profile, :update_profile]
+  before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture]
   
   def new
     @user = User.new
@@ -28,11 +28,35 @@ class UsersController < ApplicationController
   
   def update_profile
     if  @user.update(user_params)
+      @user.email = params[:email]
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
       flash[:danger] = "更新できませんでした。"
       render :edit_profile
+    end
+  end
+  
+  def edit_mypage
+  end
+  
+  def update_mypage
+  end
+   
+  def edit_picture
+    
+  end
+  
+  def update_picture
+    if params[:image]
+        @user.image = "user_#{@user.id}.png"
+        File.binwrite("public/user_images/#{@user.image}", params[:image].read)
+    end    
+    if @user.save
+       flash[:success] = "ユーザー情報を編集しました！"
+       redirect_to user_url @user
+    else
+       render :edit
     end
   end
   

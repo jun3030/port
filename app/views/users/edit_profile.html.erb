@@ -4,10 +4,10 @@
 
 <div class="center">
   <%= image_tag "/user_images/#{@user.image}" %><br>
-  <a href="https://oursounds.net/member/profileimg/"><p class="profile-btn">プロフィール画像変更</p></a>
+  <%= link_to "プロフィール画像変更", edit_picture_path(current_user), class: "btn profile-btn" %>
 </div>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped profile-table">
   <tr>
     <th>使用目的</th>
     <td><%= f.text_field :purpose_of_use %></td>
@@ -46,7 +46,7 @@
 
 </table>
 <div class="center">
-  <%= f.submit "決定", class: "btn btn-primary btn-lg btn-block" %>
+  <%= f.submit "決定", class: "btn btn-lg btn-block profile-btn2" %>
 </div>
   <% end %>
   
