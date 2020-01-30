@@ -1,10 +1,16 @@
-<h1>Posts#index</h1>
 
-<div class="main posts-index">
-    <div class="container">
-        <% @posts.each do |post| %>
-          <%= post.title %>
-          <%= post.content %>
-        <% end %>
-    </div>
-</div>
+<nav>
+  <ul class="thumbListx3">
+    　<% @users.each do |user| %>
+    　<% user.posts.each do |post| %>
+    　<div class="profile">
+        <div class="post.picture"><%= image_tag user.image %></div>
+          <p class="post-title"><%= post.title %></p>
+                <div class="btn btn-outline-info"><%= user.name %>(<%= user.age %>歳<%= user.sex %>/<%= user.prefecture %>)</div>
+
+      </div>
+      <% end %>
+      <% end %>
+　</ul>
+</nav>
+

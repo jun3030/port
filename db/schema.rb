@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200127024029) do
+ActiveRecord::Schema.define(version: 20200130025954) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20200127024029) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.string "image"
     t.text "purpose_of_use"
     t.integer "prefecture", default: 0, null: false
     t.integer "responsible_part", default: 0, null: false
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20200127024029) do
     t.string "sex"
     t.string "favorite_artist"
     t.text "self_introduction"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
