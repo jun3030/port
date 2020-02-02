@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture
   patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture
   resources :users do
+     member do
+      get 'edit_basic_info'
+      patch 'update_basic_info'
+    end
+    get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show
   end
  
  

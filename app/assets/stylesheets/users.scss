@@ -1,14 +1,7 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.table {
-    width: 100%;
-    display: table;
-}
 
-.span.required {
-    right: 30px;
-}
 
 .profile-btn {
     background: #005151;
@@ -36,6 +29,30 @@
 }
 
 
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.flex-item {
+    
+}
 
+.post-title {
+    text-align: center;
+}
 
+.user-name {
+    text-align: center;
+}
+
+/* 基本情報編集モーダルウインドウ */
+
+.label-basic-info {
+  margin-top: 5px;
+}
+
+.btn-basic-info {
+  margin: 15px 0;
+  width: 30%;
+}

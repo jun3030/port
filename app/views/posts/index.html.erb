@@ -1,16 +1,18 @@
-
-<nav>
-  <ul class="thumbListx3">
-    　<% @users.each do |user| %>
-    　<% user.posts.each do |post| %>
-    　<div class="profile">
-        <div class="post.picture"><%= image_tag user.image %></div>
-          <p class="post-title"><%= post.title %></p>
-                <div class="btn btn-outline-info"><%= user.name %>(<%= user.age %>歳<%= user.sex %>/<%= user.prefecture %>)</div>
-
+<div class="flex-container">
+    <% @users.each do |user| %>
+    
+    <% user.posts.each do |post| %>
+      <div class="flex-item">
+          <div><%= image_tag user.image %></div>
+          <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "btn btn-lg btn-primary" %></div>
+          <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
       </div>
-      <% end %>
-      <% end %>
-　</ul>
-</nav>
+    <% end %>
+    <% end %>
+</div>
 
+<%= link_to "基本情報編集", edit_basic_info_user_path(current_user), remote: true, class: "btn btn-success" %>
+
+
+<!--モーダルウインドウ表示-->
+<div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

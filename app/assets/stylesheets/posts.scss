@@ -2,24 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-ul{
-display: table;
 
-text-align: center;
-}
 
-ul li{
-display: table-cell;
-}
 
-.content-left{
-  width: 300px;
-  margin: 10px 20px;
-  padding: 20px;
-  height: 220px;  
-  float: left;
-  }
   
-.profile {
-  display: table-cell;
+/* 基本情報編集モーダルウインドウ */
+
+.label-basic-info {
+  margin-top: 5px;
+}
+
+.btn-basic-info {
+  margin: 15px 0;
+  width: 30%;
 }

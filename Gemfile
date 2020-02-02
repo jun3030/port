@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails',        '~> 5.1.6'
-gem 'bcrypt' # 今回追加するgemです
+gem 'rails-i18n'
 gem 'bootstrap-sass'
+gem 'bcrypt' # 今回追加するgemです
+gem 'faker' # ユーザー作成
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'puma',         '~> 3.7'
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
@@ -15,6 +19,7 @@ gem 'jquery-rails'
 gem 'rinku'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'roo'
 
 group :development, :test do
   gem 'sqlite3'
