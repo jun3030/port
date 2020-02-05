@@ -8,17 +8,15 @@ Rails.application.routes.draw do
  
   get 'posts/index'
   
-  get 'users/:id/edit_profile', to: 'users#edit_profile', as: :users_profile
-  patch 'users/:id/update_profile', to: 'users#update_profile', as: :update_profile
-  get 'users/:id/edit_mypage', to: 'users#edit_mypage', as: :edit_mypage
-  patch 'users/:id/update_mypage', to: 'users#update_mypage', as: :update_mypage
-  get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture
-  patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture
+  get 'users/:id/edit_profile', to: 'users#edit_profile', as: :users_profile # プロフィール設定画面
+  patch 'users/:id/update_profile', to: 'users#update_profile', as: :update_profile # プロフィール アップデート
+  get 'users/:id/edit_mypage', to: 'users#edit_mypage', as: :edit_mypage # マイページ
+  patch 'users/:id/update_mypage', to: 'users#update_mypage', as: :update_mypage # マイページ アップデート
+  get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture # 画像編集
+  patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture # 画像アップロード
+  
   resources :users do
-     member do
-      get 'edit_basic_info'
-      patch 'update_basic_info'
-    end
+     
     get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show
   end
  
