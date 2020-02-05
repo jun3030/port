@@ -35,8 +35,8 @@ User.create!(name: "Sample User3",
              favorite_artist: "あいみょん",
              prefecture: "北海道",
              genre: 8,
-             responsible_part: "ギター",
-             image: File.open("./public/user_images/default.png"))
+             responsible_part: "ギター",)
+             #image: File.open("./public/user_images/default.png"))
              
 User.create!(name: "Sample User4",
              email: "sample4@email.com",
@@ -48,8 +48,8 @@ User.create!(name: "Sample User4",
              favorite_artist: "yui",
              prefecture: "北海道",
              genre: 8,
-             responsible_part: "ギター",
-             image: File.open("./public/user_images/default.png"))
+             responsible_part: "ギター",)
+             #image: File.open("./public/user_images/default.png"))
              
 
 User.create!(name: "Sample User5",
@@ -62,8 +62,8 @@ User.create!(name: "Sample User5",
              favorite_artist: "フラフラ",
              prefecture: "北海道",
              genre: 8,
-             responsible_part: "ギター",
-             image: File.open("./public/user_images/default.png"))
+             responsible_part: "ギター",)
+             #image: File.open("./public/user_images/default.png"))
              
 User.create!(name: "Sample User6",
              email: "sample6@email.com",
@@ -75,8 +75,8 @@ User.create!(name: "Sample User6",
              favorite_artist: "あいみょん",
              prefecture: "北海道",
              genre: 8,
-             responsible_part: "ギター",
-             image: File.open("./public/user_images/default.png"))
+             responsible_part: "ギター",)
+             #image: File.open("./public/user_images/default.png"))
 
              
 

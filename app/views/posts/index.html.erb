@@ -3,7 +3,7 @@
     
     <% user.posts.each do |post| %>
       <div class="flex-item">
-          <div><%= image_tag user.image %></div>
+          <div><%= image_tag user.image, :size => '100x100' %></div>
           <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "btn btn-lg btn-primary" %></div>
           <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
       </div>

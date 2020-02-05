@@ -3,7 +3,7 @@
 <%= form_with(model: @user, url: update_profile_path, local: true) do |f| %>
 
 <div class="center">
-  <%= image_tag @user.image %><br>
+  <%= image_tag @user.image, :size => '100x100' %><br>
   <%= link_to "プロフィール画像変更", edit_picture_path(current_user), class: "btn profile-btn" %>
 </div>
 
