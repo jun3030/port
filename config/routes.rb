@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   
   resources :users do
      
-    get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show
+    get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show # モーダルウィンドウ
+    get 'posts/:id/users_posts', to: 'posts#users_posts', as: :posts #　記事を投稿するページ
   end
  
  

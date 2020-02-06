@@ -56,3 +56,51 @@
   margin: 15px 0;
   width: 30%;
 }
+
+/* マイページ */
+
+.comment {
+    display: flex;
+    text-align: center;
+}
+
+.user-info {
+    font-size: 25px;
+    color: black;
+}
+
+.user-image {
+    
+    padding-right: 20px;
+    padding-top: 20px;
+    
+}
+
+.user-name-mypage {
+     
+     
+}
+
+.self-introduction {
+     
+}
+
+/* ユーザー情報　リストの囲い　レイアウト */
+.test {
+  list-style-type: none;
+  background: #fffcf4;
+  border-radius :8px;/*角の丸み*/
+  box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+
+}
+ 
+
+
+.self-introduction {
+    padding-top: 20px;
+}
+
+
+ul li, ol li {
+  line-height: 1.5;
+}

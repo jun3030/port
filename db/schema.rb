@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20200205114908) do
     t.text "purpose_of_use"
     t.integer "prefecture", default: 0, null: false
     t.integer "responsible_part", default: 0, null: false
-    t.string "genre"
+    t.integer "genre"
     t.integer "age"
     t.string "sex"
     t.string "favorite_artist"

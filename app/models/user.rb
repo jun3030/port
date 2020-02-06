@@ -20,6 +20,7 @@ class User < ApplicationRecord
   validates :age, presence: true, on: :update_profile
   validates :sex, presence: true, on: :update_profile
   validates :self_introduction, length: { maximum: 15000 }
+  validates :genre, presence: true, on: :update_profile
   
   
   enum prefecture:{

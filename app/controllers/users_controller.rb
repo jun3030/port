@@ -27,7 +27,10 @@ class UsersController < ApplicationController
   end
   
   def update_profile
+    
     if  @user.update(user_params)
+      @user[:genre] = params[:user][:genre]
+      @user.save
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
@@ -37,9 +40,11 @@ class UsersController < ApplicationController
   end
   
   def edit_mypage
+  
   end
   
   def update_mypage
+    
   end
    
   def edit_picture

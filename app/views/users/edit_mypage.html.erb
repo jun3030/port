@@ -1,0 +1,19 @@
+
+<div class="col-md-8 col-md-offset-3">
+<div class="comment">
+  <div class="comment-left">
+    <div class="user-image"><%= image_tag @user.image, :size => '150x150' %></div>
+  </div>
+  <div class="comment-right">
+    
+    <h1 class="user-name-mypage"><%= @user.name %><span class="user-info">(<%= @user.prefecture %>,<%= @user.age %><%= @user.sex %>)</span></h1>
+    <ul class="test">
+      <li>担当パート:<%= @user.responsible_part %></li>
+      <li>好きなジャンル:<%= @user.genre %></li>
+      <li>好きなアーティスト:<%= @user.favorite_artist %></li>
+      <li class="self-introduction"><%= @user.self_introduction %></li>
+    </ul>
+    
+  </div>
+</div>
+</div>
