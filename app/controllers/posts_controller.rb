@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   before_action :set_user, only: [:posts_show, :users_posts]
-  before_action :set_post, only: [:posts_show, :users_posts]
+  before_action :set_post, only: [:posts_show]
   
   def index
     @users = User.all
