@@ -4,15 +4,32 @@
     <% @users.each do |user| %>
     
     <% user.posts.each do |post| %>
-      <div class="flex-item">
+    <div class="user-posts">
+    <div class="flex-item-video">
+      <% if post.video? %>
+        <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
+      <% else %>
+        <div class="image"><%= image_tag post.posts_image, :size => "350x260"%></div>
+      <% end %>
+    </div>
+      <div class="comment">
+        <div class="flex-item-left">
           <div><%= image_tag user.image, :size => '50x50' %></div>
-          <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "" %></div>
-          <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
+        </div>
+        <div class="flex-itme-right">
+            <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "" %></div>
+            <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
+        </div>
+      </div>
       </div>
     <% end %>
     <% end %>
 </div>
 
+<video src="IMG_3077.MOV">
+  <p>このブラウザでは動画を再生することができません。最新版のブラウザをご利用ください。
+  </p>
+</video>
 
 
 
