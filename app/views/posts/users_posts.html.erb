@@ -1,13 +1,14 @@
 <%= form_with(model: @post, url: user_create_posts_path, local: true) do |f| %>
+  <%= render 'shared/error_messages' %>
   
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   
-  <%= f.label :posts_image %>
+  <%= f.label :image %>
   <%= f.file_field :posts_image %>
   
   <%= f.label :video %>
-  <%= f.file_field :video, :multiple => false %>
+  <%= f.file_field :video, :multiple => true %>
  
   
   

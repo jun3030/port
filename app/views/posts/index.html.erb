@@ -6,11 +6,13 @@
     <% user.posts.each do |post| %>
     <div class="user-posts">
     <div class="flex-item-video">
-      <% if post.video? %>
+    <% if post.video?  %>
         <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
-      <% else %>
-        <div class="image"><%= image_tag post.posts_image, :size => "350x260"%></div>
-      <% end %>
+    <% else %>
+        <div class="video"><%= image_tag post.posts_image, :size => "350x260"%></div>
+    <% end %>
+        
+     
     </div>
       <div class="comment">
         <div class="flex-item-left">
@@ -19,6 +21,7 @@
         <div class="flex-itme-right">
             <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "" %></div>
             <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
+            <div class="posted-date">投稿時間:<%= post.updated_at.in_time_zone('Tokyo').strftime("%Y/%-m/%-d %-H時%-M分") %></div>
         </div>
       </div>
       </div>

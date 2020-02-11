@@ -17,13 +17,26 @@ class PostsController < ApplicationController
   end
   # 記事を作成
   def users_create_posts
-    @post = Post.new(user_id: current_user.id, title: post_params[:title], video: post_params[:video])
-    if @post.save
-      flash[:success] = "記事を投稿しました。"
-      redirect_to posts_index_url
+    if params[:post][:title].blank?
+     flash[:danger] = "記事タイトルを入力して下さい"
+     redirect_to  user_posts_url
     else
-      flash[:danger] = "作成に失敗しました。"
-      render :index
+      if params[:post][:posts_image].present? && params[:post][:video].present? 
+        flash[:danger] = "画像か動画どちらか一つを投稿して下さい。"
+        redirect_to  user_posts_url
+      elsif params[:post][:posts_image].blank? && params[:post][:video].blank?
+        flash[:danger] = "画像か動画どちらか一つを投稿して下さい。"
+        redirect_to  user_posts_url
+      else
+        @post = Post.new(user_id: current_user.id, title: post_params[:title], video: post_params[:video], posts_image: post_params[:posts_image])
+        if @post.save
+          flash[:success] = "記事を投稿しました。"
+          redirect_to posts_index_url
+        else
+          flash[:danger] = "作成に失敗しました。"
+          render :index
+        end
+      end
     end
   end
   
@@ -38,6 +51,6 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title, :video)
+    params.require(:post).permit(:title, :video, :posts_image)
   end
 end
