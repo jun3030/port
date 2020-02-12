@@ -29,6 +29,7 @@ class PostsController < ApplicationController
         redirect_to  user_posts_url
       else
         @post = Post.new(user_id: current_user.id, title: post_params[:title], video: post_params[:video], posts_image: post_params[:posts_image])
+        @post[:video] = params[:post][:video]
         if @post.save
           flash[:success] = "記事を投稿しました。"
           redirect_to posts_index_url
