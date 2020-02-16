@@ -1,5 +1,5 @@
 
-<div class="col-md-8 col-md-offset-3">
+
 <div class="comment">
   <div class="comment-left">
     <div class="user-image"><%= image_tag @user.image, :size => '150x150' %></div>
@@ -16,16 +16,16 @@
     
   </div>
 </div>
-</div>
 
 
+<ul class="gallery" style="display:flex;flex-wrap:wrap;">
 <% insta["media"]["data"].each do |test| %>
-
+  <li style="list-style:none;margin:20px;padding:0;">
   <% if "mp4".in?(test["media_url"]) %>
     <%= video_tag test["media_url"], controls: true , :size => "281x281" %>
   <% else %>
     <%= image_tag test["media_url"], :size => "281x281" %>
   <% end %>
-  
-  <%= test["caption"] %>
+  </li>
 <% end %>
+</ul>
