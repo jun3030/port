@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
   # モーダルウィンドウ
   def posts_show
-    
+    @video = params[:date]
   end
   # 記事投稿画面
   def users_posts

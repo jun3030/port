@@ -17,3 +17,15 @@
   </div>
 </div>
 </div>
+
+
+<% insta["media"]["data"].each do |test| %>
+
+  <% if "mp4".in?(test["media_url"]) %>
+    <%= video_tag test["media_url"], controls: true , :size => "281x281" %>
+  <% else %>
+    <%= image_tag test["media_url"], :size => "281x281" %>
+  <% end %>
+  
+  <%= test["caption"] %>
+<% end %>
