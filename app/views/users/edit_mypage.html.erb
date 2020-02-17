@@ -1,11 +1,12 @@
+<div class="flex-container">
 
 
+<div class="container">
 <div class="comment">
   <div class="comment-left">
     <div class="user-image"><%= image_tag @user.image, :size => '150x150' %></div>
   </div>
   <div class="comment-right">
-    
     <h1 class="user-name-mypage"><%= @user.name %><span class="user-info">(<%= @user.prefecture %>,<%= @user.age %><%= @user.sex %>)</span></h1>
     <ul class="test">
       <li>担当パート:<%= @user.responsible_part %></li>
@@ -13,24 +14,53 @@
       <li>好きなアーティスト:<%= @user.favorite_artist %></li>
       <li class="self-introduction"><%= @user.self_introduction %></li>
     </ul>
-    
+  </div>
+  <div class="instagram_search">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <div class="from-instagram">from-instagram</div>
+      </a>
+      <ul class="dropdown-menu">
+        <li>      
+        <%= form_with(model: @user, url: update_mypage_path, method: :patch, local: true) do |f| %>
+        
+          <%= f.label :token, class: "label-class" %>
+          <%= f.text_field :first_token, class: "form-control" %>
+          
+          <%= f.label :app_id, class: "label-class" %>
+          <%= f.number_field :app_id, class: "form-control" %>
+          
+          <%= f.label :app_secret, class: "label-class" %>
+          <%= f.text_field :app_secret, class: "form-control" %>
+          
+          <%= f.label :media_count, class: "label-class" %>
+          <%= f.number_field :media_count, class: "form-control" %>
+          
+          <%= f.submit "データを取得", class: "instagram-btn" %>
+        <% end %>
+        </li>
+      </ul>
+    </li>
   </div>
 </div>
 
 
-<ul class="gallery" style="display:flex;flex-wrap:wrap;">
-<% insta["media"]["data"].each do |test| %>
-  <li style="list-style:none;margin:20px;padding:0;">
-  <% if "mp4".in?(test["media_url"]) %>
-    <%= video_tag test["media_url"], controls: true , :size => "281x281" %>
-  <% else %>
-    <%= image_tag test["media_url"], :size => "281x281" %>
-  <% end %>
-  </li>
-<% end %>
-</ul>
+</div>
 
+<div class="container">
+  <ul class="gallery" style="display:flex;flex-wrap:wrap;">
+    <% insta["media"]["data"].each do |test| %>
+      <li style="list-style:none;margin:20px;padding:0;">
+      <% if "mp4".in?(test["media_url"]) %>
+        <%= video_tag test["media_url"], controls: true , :size => "281x281" %>
+      <% else %>
+        <%= image_tag test["media_url"], :size => "281x281" %>
+      <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<div id="contentContainer" class="style-scope app-drawer" style="transition-duration: 200ms;" position="left" swipe-open="" opened="">
-      
+<footer>
+
 </div>

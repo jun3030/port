@@ -59,10 +59,52 @@
 
 /* マイページ */
 
+.flex-container {
+    display: flex;
+}
+
 .comment {
     display: flex;
     text-align: center;
+    justify-content: center;
+    
 }
+/* インスタから情報をとる */
+.instagram_search {
+    padding-left: 20px;
+    
+}
+
+.instagram-btn {
+    margin-top: 10px;
+    
+}
+
+.dropdown {
+    list-style-type: none;
+    padding: 20px;
+    width: 200px;
+    
+}
+
+.dropdown-menu {
+    text-align: center;
+    padding: 10px;
+}
+
+.from-instagram {
+  position: relative;
+  padding: 0.1em 0.5em;
+  background: -webkit-linear-gradient(to right, rgb(255, 186, 115), transparent);
+  background: linear-gradient(to right, rgb(255, 186, 115), transparent);
+  color: #545454;
+}
+
+.caret {
+
+    
+}
+
 
 .user-info {
     font-size: 25px;
@@ -130,3 +172,15 @@ ul li, ol li {
     width: 100px;
 
 }
+
+.side-bar-content {
+    display: flex;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 125px;
+    width: 185px;
+    height: 150px;
+    border: 1px solid;
+}
+
+

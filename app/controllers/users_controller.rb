@@ -42,9 +42,16 @@ class UsersController < ApplicationController
   def edit_mypage
   
   end
-  
+  #　インスタグラムのデータを取り込む
   def update_mypage
-    
+    @user.update(instagram_params)
+    if @user.save
+      flash[:success] = "instagramから画像と動画を取り込みました。"
+      redirect_to edit_mypage_url
+    else
+      flash[:danger] = "失敗バージョン"
+      render :update_mypage
+    end
   end
    
   def edit_picture
@@ -74,6 +81,10 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :image, :password, :password_confirmation, :age, :sex, :purpose_of_use, :prefecture, :responsible_part, :genre, :favorite_artist, :self_introduction)
+  end
+  
+  def instagram_params
+    params.require(:user).permit(:first_token, :second_token, :third_token, :app_id, :app_secret, :media_count)
   end
   
  
