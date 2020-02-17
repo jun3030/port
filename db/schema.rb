@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200207100925) do
+ActiveRecord::Schema.define(version: 20200217044823) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -39,6 +39,12 @@ ActiveRecord::Schema.define(version: 20200207100925) do
     t.string "favorite_artist"
     t.text "self_introduction"
     t.string "image"
+    t.string "first_token"
+    t.string "second_token"
+    t.string "third_token"
+    t.integer "app_id"
+    t.string "app_secret"
+    t.integer "media_count"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
