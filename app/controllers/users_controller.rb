@@ -63,15 +63,14 @@ class UsersController < ApplicationController
   end
   
   def update_picture
-    if params[:image]
-        @user.image = "user_#{@user.id}.png"
-        File.binwrite("public/user_images/#{@user.image}", params[:image].read)
-    end    
-    if @user.save
-       flash[:success] = "ユーザー情報を編集しました！"
-       redirect_to user_url @user
+    if  @user.update(user_params)
+      @user[:genre] = params[:user][:genre]
+      @user.save
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to root_url
     else
-       render :edit
+      flash[:danger] = "更新できませんでした。"
+      render :edit_profile
     end
   end
   
