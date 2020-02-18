@@ -34,7 +34,8 @@ class UsersController < ApplicationController
     else
       flash[:danger] = "更新できませんでした。"
       render :edit_profile
-    endq  uit
+    end
+  end
   
   def edit_mypage
   
