@@ -1,12 +1,13 @@
-<h1>プロフィール設定</h1>
+<%= render 'shared/error_messages', object: @user %>
 
-<%= form_with(model: @user, url: update_profile_path, local: true) do |f| %>
+<h1>プロフィール設定</h1>
 
 <div class="center">
   <%= image_tag @user.image, :size => '100x100' %><br>
   <%= link_to "プロフィール画像変更", edit_picture_path(current_user), class: "btn profile-btn" %>
 </div>
 
+<%= form_with(model: @user, url: update_profile_path, local: true) do |f| %>
 <table class="table table-bordered table-striped profile-table">
   <tr>
     <th>使用目的</th>

@@ -27,14 +27,15 @@ class UsersController < ApplicationController
   end
  
   def update_profile
-    if  @user.attributes
-      @user.save
-      flash[:success] = "ユーザー情報を更新しました。"
-      redirect_to root_url
-    else
-      flash[:danger] = "更新できませんでした。"
-      render :edit_profile
-    end
+      @user.attributes = { name: user_params[:name], age: user_params[:age], sex: user_params[:sex], purpose_of_use: user_params[:purpose_of_use], 
+                           prefecture: user_params[:prefecture], responsible_part: user_params[:responsible_part], genre: user_params[:genre],
+                           favorite_artist: user_params[:favorite_artist], self_introduction: user_params[:self_introduction]}
+      if @user.save(context: :update_profile)
+        flash[:success] = "ユーザー情報を更新しました。"
+        redirect_to root_url
+      else
+        render :edit_profile
+      end
   end
   
   def edit_mypage

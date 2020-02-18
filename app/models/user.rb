@@ -19,7 +19,7 @@ class User < ApplicationRecord
   validates :responsible_part, presence: true, on: :update_profile
   validates :age, presence: true, on: :update_profile
   validates :sex, presence: true, on: :update_profile
-  validates :self_introduction, length: { maximum: 15000 }
+  validates :self_introduction, length: { maximum: 15000 }, presence: true, on: :update_profile
   validates :genre, presence: true, on: :update_profile
   
   
