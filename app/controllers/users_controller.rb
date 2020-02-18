@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture]
+  before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram]
   
   def new
     @user = User.new
@@ -42,11 +42,16 @@ class UsersController < ApplicationController
   def edit_mypage
   
   end
-  #　インスタグラムのデータを取り込む
+  
   def update_mypage
-    @user.update(instagram_params)
+   
+  end
+  #　インスタグラムのデータを取り込む
+  def upload_instagram
+     @user.update(instagram_params)
     if @user.save
-      flash[:success] = "instagramから画像と動画を取り込みました。"
+      flash[:info] = "instagramから画像と動画を取り込むためのデータを入力しました。"
+      flash[:danger] = "コンテンツが表示されない場合は入力情報を確認してください。"
       redirect_to edit_mypage_url
     else
       flash[:danger] = "失敗バージョン"

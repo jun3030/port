@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch 'users/:id/update_profile', to: 'users#update_profile', as: :update_profile # プロフィール アップデート
   get 'users/:id/edit_mypage', to: 'users#edit_mypage', as: :edit_mypage # マイページ
   patch 'users/:id/update_mypage', to: 'users#update_mypage', as: :update_mypage # マイページ アップデート
+  patch 'users/:id/upload_instagram', to: 'users#upload_instagram', as: :upload_instagram # instagram アップロード
   get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture # 画像編集
   patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture # 画像アップロード
   
