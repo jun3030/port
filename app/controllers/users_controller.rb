@@ -25,19 +25,16 @@ class UsersController < ApplicationController
   def edit_profile
     
   end
-  
+ 
   def update_profile
-    
-    if  @user.update(user_params)
-      @user[:genre] = params[:user][:genre]
+    if  @user.attributes
       @user.save
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
       flash[:danger] = "更新できませんでした。"
       render :edit_profile
-    end
-  end
+    endq  uit
   
   def edit_mypage
   

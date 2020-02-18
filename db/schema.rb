@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20200217044823) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.integer "app_id", limit: 8
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -42,7 +43,6 @@ ActiveRecord::Schema.define(version: 20200217044823) do
     t.string "first_token"
     t.string "second_token"
     t.string "third_token"
-    t.integer "app_id"
     t.string "app_secret"
     t.integer "media_count"
     t.index ["email"], name: "index_users_on_email", unique: true
