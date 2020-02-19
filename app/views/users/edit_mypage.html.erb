@@ -55,7 +55,8 @@
 
 <div class="container">
   <ul class="gallery" style="display:flex;flex-wrap:wrap;">
-    <% insta["media"]["data"].each do |test| %>
+    <% if @user.third_token.present? %>
+    <% instagram["media"]["data"].each do |test| %>
       <li style="list-style:none;margin:20px;padding:0;">
       <% if "mp4".in?(test["media_url"]) %>
         <%= video_tag test["media_url"], controls: true , :size => "281x281" %>
@@ -63,6 +64,7 @@
         <%= image_tag test["media_url"], :size => "281x281" %>
       <% end %>
       </li>
+    <% end %>
     <% end %>
   </ul>
 </div>

@@ -47,15 +47,36 @@ class UsersController < ApplicationController
   end
   #　インスタグラムのデータを取り込む
   def upload_instagram
-     @user.update(instagram_params)
-    if @user.save
-      flash[:info] = "instagramから画像と動画を取り込むためのデータを入力しました。"
-      flash[:danger] = "コンテンツが表示されない場合は入力情報を確認してください。"
-      redirect_to edit_mypage_url
+     @user.attributes = { first_token: instagram_params[:first_token], second_token: instagram_params[:second_token], third_token: instagram_params[:third_token], app_id: instagram_params[:app_id], 
+                          app_secret: instagram_params[:app_secret], media_count: instagram_params[:media_count]}
+    if @user.save(context: :upload_instagram)
+      token = @user.first_token
+      app_id = @user.app_id
+      app_secret = @user.app_secret
+       # media_count = @user.media_count
     else
-      flash[:danger] = "失敗バージョン"
-      render :update_mypage
+      flash[:danger] = "入力項目が不足しています。"
+      render :edit_mypage and return
     end
+      res = Net::HTTP.get(URI.parse("https://graph.facebook.com/v3.0/oauth/access_token?grant_type=fb_exchange_token&client_id=#{app_id}&client_secret=#{app_secret}&fb_exchange_token=#{token}"))
+      if JSON.parse(res)["access_token"].nil?
+        flash[:danger] = "入力情報が正しくありません。"
+        render :edit_mypage
+      else
+        # second_token取得
+        second = JSON.parse(res)["access_token"]
+        id = Net::HTTP.get(URI.parse("https://graph.facebook.com/v5.0/me?access_token=#{second}"))
+        id = JSON.parse(id)["id"]
+        third = Net::HTTP.get(URI.parse("https://graph.facebook.com/v5.0/#{id}/accounts?access_token=#{second}"))
+        third = JSON.parse(third)
+        
+        # third_token取得
+        @user[:third_token] = third["data"][0]["access_token"]
+        @user.save
+        flash[:info] = "instagramから画像と動画を取り込むためのデータを入力しました。"
+        flash[:danger] = "コンテンツが表示されない場合は入力情報を確認してください。"
+        redirect_to edit_mypage_url
+      end
   end
    
   def edit_picture
@@ -64,8 +85,6 @@ class UsersController < ApplicationController
   
   def update_picture
     if  @user.update(user_params)
-      @user[:genre] = params[:user][:genre]
-      @user.save
       flash[:success] = "ユーザー情報を更新しました。"
       redirect_to root_url
     else
