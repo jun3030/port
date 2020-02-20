@@ -198,4 +198,11 @@ ul li, ol li {
     border: 1px solid;
 }
 
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-width: 500px;
+    width: 90%;
+}
 
