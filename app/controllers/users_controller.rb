@@ -74,6 +74,7 @@ class UsersController < ApplicationController
         # third_token取得
         @user[:third_token] = third["data"][0]["access_token"]
         @user.save
+        
         flash[:info] = "instagramから画像と動画を取り込むためのデータを入力しました。"
         flash[:danger] = "コンテンツが表示されない場合は入力情報を確認してください。"
         redirect_to edit_mypage_url
@@ -111,7 +112,7 @@ class UsersController < ApplicationController
   end
   # もし第３トークンを持っているユーザーなら、インスタの画像、動画データをUrlモデルのusers_urlカラムに格納します。
   def set_instagram_create
-    if @user.third_token.present?
+    if @user.third_token.present? && @user.urls.blank?
       third = @user.third_token
       media_count = @user.media_count
    
@@ -122,6 +123,10 @@ class UsersController < ApplicationController
       user_media = Net::HTTP.get(URI.parse("https://graph.facebook.com/v3.3/#{instagram_business_account}?fields=name%2Cmedia.limit(#{media_count})%7Bcaption%2Clike_count%2Cmedia_url%2Cpermalink%2Ctimestamp%2Cusername%7D&access_token=#{third}"))
       res = JSON.parse(user_media) 
       res["media"]["data"].each { |insta| @user.urls.create(users_url: insta["media_url"]) }
+      
+      @instagram = @user.urls.where.not(users_url: nil)
+    elsif @user.third_token.present? && @user.urls.present?
+      @instagram = @user.urls.where.not(users_url: nil)
     end
   end
  

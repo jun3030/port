@@ -80,3 +80,8 @@
 <footer>
 
 </div>
+<% if @user.third_token.present?  %>
+<% @instagram.each do |insta|  %>
+  <%= insta.users_url %>
+<% end %>
+<% end %>
