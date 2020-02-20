@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   
   before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram]
+  before_action :set_instagram_create, only: [:edit_mypage]
   
   def new
     @user = User.new
@@ -108,6 +109,20 @@ class UsersController < ApplicationController
   def instagram_params
     params.require(:user).permit(:first_token, :second_token, :third_token, :app_id, :app_secret, :media_count)
   end
-  
+  # もし第３トークンを持っているユーザーなら、インスタの画像、動画データをUrlモデルのusers_urlカラムに格納します。
+  def set_instagram_create
+    if @user.third_token.present?
+      third = @user.third_token
+      media_count = @user.media_count
+   
+      instagram_business_account = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/me?fields=instagram_business_account&access_token=#{third}"))
+      instagram_business_account = JSON.parse(instagram_business_account)["instagram_business_account"]["id"]
+        
+        
+      user_media = Net::HTTP.get(URI.parse("https://graph.facebook.com/v3.3/#{instagram_business_account}?fields=name%2Cmedia.limit(#{media_count})%7Bcaption%2Clike_count%2Cmedia_url%2Cpermalink%2Ctimestamp%2Cusername%7D&access_token=#{third}"))
+      res = JSON.parse(user_media) 
+      res["media"]["data"].each { |insta| @user.urls.create(users_url: insta["media_url"]) }
+    end
+  end
  
 end

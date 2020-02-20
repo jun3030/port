@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show # モーダルウィンドウ
     get 'posts/users_posts', to: 'posts#users_posts', as: :posts #　記事を投稿するページ
     post 'posts/users_create_posts', to: 'posts#users_create_posts', as: :create_posts #　記事を投稿するページ
+    
+    patch 'urls/:id/users_imaeg_and_video_url', to: 'urls#users_imaeg_and_video_url', as: :users_url
   end
  
  
