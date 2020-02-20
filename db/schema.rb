@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20200220052029) do
   end
 
   create_table "urls", force: :cascade do |t|
-    t.boolean "public"
+    t.boolean "public_url"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

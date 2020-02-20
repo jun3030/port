@@ -60,15 +60,15 @@
     <% @instagram.each do |test| %>
       <%= f.fields_for "urls[]", test do |instagram| %>
         <li style="list-style:none;margin:20px;padding:0;">
-        <% if "mp4".in?(test.users_url) %>
-          <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
-        <% else %>
-          <%= image_tag test.users_url, :size => "281x281" %>
-        <% end %>
+          <% if "mp4".in?(test.users_url) %>
+            <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
+          <% else %>
+            <%= image_tag test.users_url, :size => "281x281" %>
+          <% end %>
         <!-- 写真を公開するかしないか -->
         <div>
           <%= instagram.label "非公開" %>
-          <%= instagram.check_box :public, {} , true, false %>
+          <%= instagram.check_box :public_url, {} , "true", "false" %>
         </div>
         </li>
       <% end %>
