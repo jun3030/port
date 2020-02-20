@@ -54,22 +54,24 @@
 </div>
 
 <div class="container">
-  <%= form_with(url: user_users_url_path(current_user), method: :patch) do |f| %>
+  <%= form_with(model: @user, url: user_users_url_path(current_user), method: :patch) do |f| %>
   <ul class="gallery" style="display:flex;flex-wrap:wrap;">
     <% if @user.third_token.present? %>
     <% @instagram.each do |test| %>
-      <li style="list-style:none;margin:20px;padding:0;">
-      <% if "mp4".in?(test.users_url) %>
-        <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
-      <% else %>
-        <%= image_tag test.users_url, :size => "281x281" %>
+      <%= f.fields_for "urls[]", test do |instagram| %>
+        <li style="list-style:none;margin:20px;padding:0;">
+        <% if "mp4".in?(test.users_url) %>
+          <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
+        <% else %>
+          <%= image_tag test.users_url, :size => "281x281" %>
+        <% end %>
+        <!-- 写真を公開するかしないか -->
+        <div>
+          <%= instagram.label "非公開" %>
+          <%= instagram.check_box :public, {} , true, false %>
+        </div>
+        </li>
       <% end %>
-      <!-- 写真を公開するかしないか -->
-      <div>
-        <%= f.label "非公開" %>
-        <%= f.check_box :remember_me, {} , true, false %>
-      </div>
-      </li>
     <% end %>
     <% end %>
   </ul>
