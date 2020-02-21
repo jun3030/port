@@ -142,7 +142,28 @@
      
 }
 
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -10px -10px 0px;
+    
+}
 
+.aaa {
+    list-style: none;
+}
+
+/* 画像と動画のクラス */
+.tee {
+    padding: 15px;
+}
+
+/* 非公開スイッチ*/
+.tee-test {
+    text-align: center;
+    
+}
 
 
 
@@ -183,7 +204,7 @@ ul li, ol li {
 
 /* モーダル */
 .users_video {
-    background: orange;
+    
     width: 100px;
 
 }
@@ -198,11 +219,4 @@ ul li, ol li {
     border: 1px solid;
 }
 
-.gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    min-width: 500px;
-    width: 90%;
-}
 

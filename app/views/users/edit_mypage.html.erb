@@ -1,4 +1,4 @@
-<div class="flex-container">
+
 
 
 <div class="container">
@@ -49,9 +49,8 @@
     </div>
   </div>
 </div>
-
-
 </div>
+
 
 <div class="container">
   <%= form_with(model: @user, url: user_users_url_path(current_user), method: :patch) do |f| %>
@@ -59,26 +58,35 @@
     <% if @user.third_token.present? %>
     <% @instagram.each do |test| %> <!-- @instagram = @user.urls.where.not(users_url: nil) -->
       <%= f.fields_for "urls[]", test do |instagram| %>
-        <li style="list-style:none;margin:20px;padding:0;", class="aaaa">
+        <li class="aaa">  
           <!-- 現在ログイン中のユーザーが@userと同じなら全て表示--> 
           <% if current_user == @user %>
             <% if "mp4".in?(test.users_url) %>
-              <%= link_to video_tag test.users_url, controls: true , :size => "270x270" %>
+                <div class="tee">
+                  <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
+                </div>
             <% else %>
-              <%= image_tag test.users_url, :size => "270x270" %>
+                <div class="tee">
+                  <%= image_tag test.users_url, :size => "281x281" %>
+                </div>
             <% end %>
-              <div>
+              <div class="tee-test">
                 <%= instagram.label "非公開" %>
                 <%= instagram.check_box :public_url, {} , "true", "false" %>
-              </div>
+              </div class="tee-test">
           <!-- public_urlがtrueのコンテンツは表示しない -->
           <% elsif test.public_url == true %>
+             
           <!-- public_urlがfalseのコンテンツは表示 -->
           <% elsif test.public_url == false %>
               <% if "mp4".in?(test.users_url) %>
-                <%= link_to video_tag test.users_url, controls: true , :size => "270x270" %>
+                <div class="tee">
+                <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
+                </div>
               <% else %>
-                <%= image_tag test.users_url, :size => "270x270" %>
+                <div class="tee">
+                <%= image_tag test.users_url, :size => "281x281" %>
+                </div>
               <% end %>
               <div>
                 
@@ -94,4 +102,4 @@
 </div>
 
 
-</div>
+
