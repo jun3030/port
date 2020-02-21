@@ -97,7 +97,9 @@
     <% end %>
     <% end %>
   </ul>
+  <% if current_user == @user %>
   <%= f.submit "公開情報を変更" %>
+  <% end %>
   <% end %>
 </div>
 
