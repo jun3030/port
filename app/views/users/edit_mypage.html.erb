@@ -71,7 +71,8 @@
                 </div>
             <% end %>
               <div class="tee-test">
-                <%= instagram.label "非公開" %>
+                <%= link_to ":記事として投稿", user_posts_path(current_user, date: test.users_url) %>
+                <%= instagram.label ":非公開" %>
                 <%= instagram.check_box :public_url, {} , "true", "false" %>
               </div class="tee-test">
           <!-- public_urlがtrueのコンテンツは表示しない -->
@@ -98,9 +99,9 @@
     <% end %>
   </ul>
   <% if current_user == @user %>
-  <%= f.submit "公開情報を変更" %>
+ 　　 <%= f.submit "公開情報を変更" %>
   <% end %>
-  <% end %>
+  <% end %>　
 </div>
 
 

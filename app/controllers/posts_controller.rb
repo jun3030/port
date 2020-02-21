@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   end
   # 記事を作成
   def users_create_posts
-    if params[:post][:title].blank?
+    if params[:post][:title].blank? && params[:post][:content].blank?
      flash[:danger] = "記事タイトルを入力して下さい"
      redirect_to  user_posts_url
     else
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
         flash[:danger] = "画像か動画どちらか一つを投稿して下さい。"
         redirect_to  user_posts_url
       else
-        @post = Post.new(user_id: current_user.id, title: post_params[:title], video: post_params[:video], posts_image: post_params[:posts_image])
+        @post = Post.new(user_id: current_user.id, title: post_params[:title], content: post_params[:content], video: post_params[:video], posts_image: post_params[:posts_image])
         @post[:video] = params[:post][:video]
         if @post.save
           flash[:success] = "記事を投稿しました。"
@@ -52,6 +52,6 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title, :video, :posts_image)
+    params.require(:post).permit(:title, :content, :video, :posts_image)
   end
 end
