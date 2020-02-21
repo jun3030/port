@@ -12,8 +12,6 @@ module SessionsHelper
   end
   
   
- 
-  
   # 一時的セッションにいるユーザーを返します。
   # それ以外の場合はcookiesに対応するユーザーを返します。
   def current_user
