@@ -77,7 +77,7 @@
 <div class="container">
   <%= form_with(model: @user, url: user_users_url_path(current_user), method: :patch) do |f| %>
   <ul class="gallery">
-    <% if @user.third_token.present? %>
+  <% if @user.third_token.present? %>
     <% @instagram.each do |test| %> <!-- @instagram = @user.urls.all -->
       <%= f.fields_for "urls[]", test do |instagram| %>
         <li class="aaa">  
@@ -113,27 +113,13 @@
              
           <!-- public_urlがfalseのコンテンツは表示 -->
         <% elsif test.public_url == false %>
-            <% if !test.users_url.nil? %> <!-- -->
-              <% if test.users_url.include?("mp4") %>
-                <div class="tee">
-                <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
-                </div>
-              <% else %>
-                <div class="tee">
-                <%= image_tag test.users_url, :size => "281x281" %>
-                </div>
-              <% end %>
-            <% end %> <!-- if !test.users_url.nil? -->
-              <div class="tee">
-                <% if test.mypage_image %>
-                  <%= image_tag test.mypage_image, :size => "281x281" %>
-                <% else %>
-                  <%= video_tag test.mypage_movie, controls: true , :size => "281x281" %>
-                <% end %>
-              </div>
-              <div>
-                
-              </div>
+            
+            
+          
+            <h1>aa</h1>
+            
+            
+            
          <% end %>
         </li>
       <% end %>
