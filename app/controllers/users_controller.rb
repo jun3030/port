@@ -113,7 +113,7 @@ class UsersController < ApplicationController
   end
   # もし第３トークンを持っているユーザーなら、インスタの画像、動画データをUrlモデルのusers_urlカラムに格納します。
   def set_instagram_create
-    if @user.third_token.present? && @user.urls.blank?
+    if @user.third_token.present? && !@user.urls.where.not(users_url: nil).present? # users_urlに値が入っているidのデータが存在していなくて、第３トークンが存在している時
       third = @user.third_token
       media_count = @user.media_count
    
@@ -125,9 +125,9 @@ class UsersController < ApplicationController
       res = JSON.parse(user_media) 
       res["media"]["data"].each { |insta| @user.urls.create(users_url: insta["media_url"]) }
       
-      @instagram = @user.urls.where.not(users_url: nil)
+      @instagram = @user.urls.where.not(id: nil) 
     elsif @user.third_token.present? && @user.urls.present?
-      @instagram = @user.urls.where.not(users_url: nil)
+      @instagram = @user.urls.where.not(id: nil)
     end
   end
  

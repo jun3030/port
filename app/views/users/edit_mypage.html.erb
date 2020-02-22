@@ -83,7 +83,7 @@
         <li class="aaa">  
           <!-- 現在ログイン中のユーザーが@userと同じなら全て表示--> 
           <% if current_user == @user %>
-            <% if "mp4".in?(test.users_url) %>
+            <% if test.users_url.include?("mp4") %>
                 <div class="tee">
                   <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
                 </div>
@@ -102,7 +102,7 @@
              
           <!-- public_urlがfalseのコンテンツは表示 -->
           <% elsif test.public_url == false %>
-              <% if "mp4".in?(test.users_url) %>
+              <% if test.users_url.include?("mp4") %>
                 <div class="tee">
                 <%= link_to video_tag test.users_url, controls: true , :size => "281x281" %>
                 </div>
