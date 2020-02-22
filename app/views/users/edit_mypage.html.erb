@@ -46,14 +46,15 @@
       </a>
       <ul class="dropdown-menu">
         <li>      
+        <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2>
         <!-- マイページに写真、動画を追加する -->
           <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
               
               <%= f.label :mypage_image %><br>
-              <%= f.file_field :mypage_video %><br>
+              <%= f.file_field :mypage_image %><br>
               
-              <%= f.label :mypage_video %><br>
-              <%= f.file_field :mypage_video %><br>
+              <%= f.label :mypage_movie %><br>
+              <%= f.file_field :mypage_movie %><br>
               
               <%= f.submit "投稿する" %>
           <% end %> 

@@ -13,7 +13,24 @@ class UrlsController < ApplicationController
     end
     
     def add_mypage_content_create
-      
+      if params[:url]
+        if params[:url][:mypage_image] && params[:url][:mypage_movie]
+          flash[:danger] = "画像か動画、どちらか一つを選択して下さい。"
+          redirect_to edit_mypage_url(@user)
+        else
+          @mypage_content = @user.urls.new(mypage_image: mypage_params[:mypage_image], mypage_movie: mypage_params[:mypage_movie])
+          if @mypage_content.save
+            flash[:success] = "コンテンツを追加しました。"
+            redirect_to edit_mypage_url(@user)
+          else
+            flash[:danger] = "作成に失敗しました。"
+            redirect_to edit_mypage_url(@user)
+          end
+        end
+      else
+        flash[:danger] = "画像か動画ファイルを選択して下さい。"
+        redirect_to edit_mypage_url(@user)
+      end
     end
     
     private
@@ -26,5 +43,8 @@ class UrlsController < ApplicationController
       params.require(:user).permit(urls: [:public_url])[:urls]
     end
     
+    def mypage_params
+       params.require(:url).permit(:mypage_image, :mypage_movie)
+    end
     
 end
