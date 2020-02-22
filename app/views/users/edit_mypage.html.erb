@@ -19,6 +19,7 @@
       </a>
       <ul class="dropdown-menu">
         <li>      
+        <!-- マイページにinstagramの写真、動画を追加する -->
         <%= form_with(model: @user, url: upload_instagram_path, method: :patch, local: true) do |f| %>
         
           <%= f.label :token, class: "label-class" %>
@@ -38,6 +39,29 @@
         </li>
       </ul>
     </li>
+    <div class="add-content">
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <div class="from-instagram">コンテンツを追加</div>
+      </a>
+      <ul class="dropdown-menu">
+        <li>      
+        <!-- マイページに写真、動画を追加する -->
+          <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
+              
+              <%= f.label :mypage_image %><br>
+              <%= f.file_field :mypage_video %><br>
+              
+              <%= f.label :mypage_video %><br>
+              <%= f.file_field :mypage_video %><br>
+              
+              <%= f.submit "投稿する" %>
+          <% end %> 
+        
+        </li>
+      </ul>
+    </li>
+    </div>
     <div class="message">
       <%= link_to "メッセージ" %>
     </div>

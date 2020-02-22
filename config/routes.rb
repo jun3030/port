@@ -20,7 +20,10 @@ Rails.application.routes.draw do
      
     get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show # モーダルウィンドウ
     get 'posts/users_posts', to: 'posts#users_posts', as: :posts #　記事を投稿するページ
-    post 'posts/users_create_posts', to: 'posts#users_create_posts', as: :create_posts #　記事を投稿するページ
+    post 'posts/users_create_posts', to: 'posts#users_create_posts', as: :create_posts #　記事を作る
+    
+    get 'urls/add_mypage_content', to: 'urls#add_mypage_content', as: :add_mypage_content # マイページへ写真、動画をアップロードする為のページ
+    post 'urls/add_mypage_content_create', to: 'urls#add_mypage_content_create', as: :add_mypage_content_create # マイページへ写真、動画をアップロードする
     
     patch 'urls/:id/users_imaeg_and_video_url', to: 'urls#users_imaeg_and_video_url', as: :users_url
   end

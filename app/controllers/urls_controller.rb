@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-    before_action :set_user, only: [:users_imaeg_and_video_url]
+    before_action :set_user, only: [:users_imaeg_and_video_url, :add_mypage_content_create]
     
     # 画像、動画を公開、非公開が選べる
     def users_imaeg_and_video_url
@@ -10,6 +10,10 @@ class UrlsController < ApplicationController
       end 
       flash[:success] = "画像、動画の公開、非公開を変更しました。"
       redirect_to edit_mypage_url
+    end
+    
+    def add_mypage_content_create
+      
     end
     
     private

@@ -40,7 +40,8 @@ class UsersController < ApplicationController
   end
   
   def edit_mypage
-  
+    @url = Url.new
+    @test_id = @user.id
   end
   
   def update_mypage

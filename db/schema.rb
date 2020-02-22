@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200221081701) do
+ActiveRecord::Schema.define(version: 20200222014447) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20200221081701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "users_url"
+    t.string "mypage_image"
+    t.string "mypage_movie"
     t.index ["user_id"], name: "index_urls_on_user_id"
   end
 
