@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20200221081701) do
     t.string "url"
     t.string "posts_image"
     t.string "video"
-    t.string "from_mypage_data" #　マイページの画像、動画を記事で使う為のカラム
+    t.string "from_mypage_data"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

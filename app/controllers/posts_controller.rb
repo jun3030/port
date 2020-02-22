@@ -20,9 +20,14 @@ class PostsController < ApplicationController
   end
   # 記事を作成
   def users_create_posts
-    
-    
-    if params[:post][:title].blank? && params[:post][:content].blank?
+    if params[:date]
+     if params[:post][:from_mypage_data].present? && (params[:post][:posts_image].blank? && params[:post][:video].blank?)
+      @post = Post.new(user_id: current_user.id, title: post_params[:title], content: post_params[:content], from_mypage_data: post_params[:from_mypage_data])
+      @post.save
+      redirect_to user_posts_url
+     end
+    else
+    if params[:post][:title].blank? || params[:post][:content].blank?
      flash[:danger] = "記事タイトルと記事内容を入力して下さい"
      redirect_to user_posts_url
     else
@@ -54,7 +59,7 @@ class PostsController < ApplicationController
         end
       end
     end
-    
+    end
   end
   
   private

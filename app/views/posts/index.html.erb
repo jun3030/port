@@ -6,12 +6,19 @@
     <% user.posts.each do |post| %>
     <div class="user-posts">
     <div class="flex-item-video">
-    <% if post.video?  %>
-        <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
+    <% if post.from_mypage_data? %>
+      <% if "mp4".in?(post.from_mypage_data) %>
+        <div class="video"><%= video_tag post.from_mypage_data, muted: true, controls: true , :size => "350x260"%></div>
+      <% else %>
+        <div class="video"><%= image_tag post.from_mypage_data, :size => "350x260"%></div>
+      <% end %>
     <% else %>
-        <div class="video"><%= image_tag post.posts_image, :size => "350x260"%></div>
+      <% if post.video?  %>
+          <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
+      <% else %>
+          <div class="video"><%= image_tag post.posts_image, :size => "350x260"%></div>
+      <% end %>
     <% end %>
-        
      
     </div>
       <div class="comment">
