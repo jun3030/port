@@ -104,8 +104,9 @@
                 </div>
           <% end %>
               <div class="tee-test">
-                <%= link_to ":記事として投稿", user_posts_path(current_user, date: test.users_url) %>
-                <%= instagram.label ":非公開" %>
+                <%= link_to "記事として投稿", user_posts_path(current_user, date: test.users_url), class: "btn btn-xs btn-primary" %>
+                <%= link_to "削除", "#", method: :delete, class: "btn btn-xs btn-primary" %>
+                <%= instagram.label "非公開" %>
                 <%= instagram.check_box :public_url, {} , "true", "false" %>
               </div class="tee-test">
           <!-- public_urlがtrueのコンテンツは表示しない -->
@@ -132,13 +133,6 @@
                   <% end %>
                 </div>
           <% end %>
-              
-            
-          
-            
-            
-            
-            
          <% end %>
         </li>
       <% end %>
