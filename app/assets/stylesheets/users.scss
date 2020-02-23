@@ -57,7 +57,11 @@
   width: 30%;
 }
 
+
+
+
 /* マイページ */
+
 
 .flex-container {
     display: flex;
@@ -69,10 +73,12 @@
     justify-content: center;
     
 }
-/* インスタから情報をとる */
-.instagram_search {
-    padding-left: 20px;
-    background: orange;
+
+
+/* マイページのmenuの中 */
+
+.menu {
+    
 }
 
 .instagram-btn {
@@ -82,14 +88,15 @@
 
 .dropdown {
     list-style-type: none;
-    padding-top: 30px;
+    background: orange;
     width: 200px;
     
 }
 
 .dropdown-menu {
+    
     text-align: center;
-    padding: 10px;
+  
 }
 
 
