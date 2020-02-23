@@ -63,14 +63,14 @@
       </ul>
     </li>
     </div>
-    <div class="messagess">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <div>メッセージ</div>　 <!-- メッセージルームを作成する -->
-          </a>
-        　<ul class="dropdown-menu">
-            <li>      
-              <% if @user.id == current_user.id %>
+    <div class="add-content">
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <div>メッセージ</div>
+      </a>
+      <ul class="dropdown-menu">
+        <li>      
+        <% if @user.id == current_user.id %>
               <% else %>
               <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
                 <% if @isRoom == true %>
@@ -85,9 +85,10 @@
                 <% end %>
               <% end %>
               <% end %>
-            </li>
-          </ul> <!-- ul class="dropdown-menu  -->
+        
         </li>
+      </ul>
+    </li>
     </div>
     <div class="asiato">
           <%= link_to "足跡" %>
