@@ -12,6 +12,8 @@
       <li class="self-introduction"><%= @user.self_introduction %></li>
     </ul>
   </div>
+  
+  
   <div class="instagram_search">
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -39,65 +41,76 @@
         </li>
       </ul>
     </li>
-    <div class="add-content">
-      <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <div>コンテンツを追加</div>
-      </a>
-      <ul class="dropdown-menu">
-        <li>      
-        <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2>
-        <!-- マイページに写真、動画を追加する -->
-          <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
-              
-              <%= f.label :mypage_image %><br>
-              <%= f.file_field :mypage_image %><br>
-              
-              <%= f.label :mypage_movie %><br>
-              <%= f.file_field :mypage_movie %><br>
-              
-              <%= f.submit "投稿する" %>
-          <% end %> 
-        
-        </li>
-      </ul>
-    </li>
-    </div>
-    <div class="add-content">
-      <li class="dropdown">
+  </div>
+    
+    
+  <div class="add-content">
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <div>コンテンツを追加</div>
+    </a>
+    <ul class="dropdown-menu">
+      <li>      
+      <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2>
+      <!-- マイページに写真、動画を追加する -->
+        <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
+            
+            <%= f.label :mypage_image %><br>
+            <%= f.file_field :mypage_image %><br>
+            
+            <%= f.label :mypage_movie %><br>
+            <%= f.file_field :mypage_movie %><br>
+            
+            <%= f.submit "投稿する" %>
+        <% end %> 
+      
+      </li>
+    </ul>
+  </li>
+  </div>
+    
+    
+  <div class="message">
+    <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       <div>メッセージ</div>
       </a>
-      <ul class="dropdown-menu">
-        <li>      
-        <% if @user.id == current_user.id %>
-              <% else %>
-              <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
-                <% if @isRoom == true %>
-                  <p><a href="/rooms/<%= @roomId %>">メッセージ</a>
-                <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
-                <% else %>
-                <%= form_for @room do |f| %>
-                  <%= fields_for @entry do |e| %>
-                    <%= e.hidden_field :user_id, value: @user.id %>
-                  <% end %>
-                  <%= f.submit "メッセージ" %>
+        <ul class="dropdown-menu">
+          <li>      
+          <% if @user.id == current_user.id %>
+          <% else %>
+                <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
+            <% if @isRoom == true %>
+              <p><a href="/rooms/<%= @roomId %>">メッセージ</a>
+                  <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
+            <% else %>
+              <%= form_for @room do |f| %>
+                <%= fields_for @entry do |e| %>
+                  <%= e.hidden_field :user_id, value: @user.id %>
                 <% end %>
+                <%= f.submit "メッセージ" %>
               <% end %>
-              <% end %>
-        
-        </li>
-      </ul>
+            <% end %>
+          <% end %>
+          </li>
+        </ul>
     </li>
-    </div>
-    <div class="asiato">
-          <%= link_to "足跡" %>
-    </div>
   </div>
+    
+    
+  <div class="foot">
+        <%= link_to "足跡" %>
+  </div>
+    
+    
 </div>
 </div>
 
+
+
 <hr>
+
+
 
 <div class="container">
   <%= form_with(model: @user, url: user_users_url_path(current_user), method: :patch) do |f| %>
