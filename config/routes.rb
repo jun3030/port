@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture # 画像編集
   patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture # 画像アップロード
   
-  delete 'users/:id/urls/:user_id/mypage_content_delete', to: 'urls#destroy', as: :delete
   
   resources :users do
      

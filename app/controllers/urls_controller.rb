@@ -7,8 +7,10 @@ class UrlsController < ApplicationController
         url_models_id = Url.find(id)
         url_models_id.update(item)
         
+        Url.where(select_content_delete: true).destroy_all
+          
       end 
-      flash[:success] = "画像、動画の公開、非公開を変更しました。"
+      flash[:success] = "選択されたコンテンツを更新しました。"
       redirect_to edit_mypage_url
     end
     
@@ -33,13 +35,6 @@ class UrlsController < ApplicationController
       end
     end
     
-    def destroy
-      @url = Url.find(params[:user_id])
-      @url.destroy
-      flash[:success] = "選択したコンテンツを削除しました。"
-      redirect_to edit_mypage_url
-    end
-    
     private
     
     def set_user
@@ -47,7 +42,7 @@ class UrlsController < ApplicationController
     end
     
     def url_params
-      params.require(:user).permit(urls: [:public_url])[:urls]
+      params.require(:user).permit(urls: [:public_url, :select_content_delete])[:urls]
     end
     
     def mypage_params
