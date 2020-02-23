@@ -114,7 +114,7 @@ class UsersController < ApplicationController
   # もし第３トークンを持っているユーザーなら、インスタの画像、動画データをUrlモデルのusers_urlカラムに格納します。
   def set_instagram_create
     if @user.third_token.present? && !@user.urls.where.not(users_url: nil).present? # users_urlに値が入っているidのデータが存在していなくて、第３トークンが存在している時
-      third = @user.third_token
+      third = @user.third_token                         # ↑ここがネック
       media_count = @user.media_count
    
       instagram_business_account = Net::HTTP.get(URI.parse("https://graph.facebook.com/v6.0/me?fields=instagram_business_account&access_token=#{third}"))

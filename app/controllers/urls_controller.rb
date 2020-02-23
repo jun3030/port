@@ -33,6 +33,13 @@ class UrlsController < ApplicationController
       end
     end
     
+    def destroy
+      @url = Url.find(params[:user_id])
+      @url.destroy
+      flash[:success] = "選択したコンテンツを削除しました。"
+      redirect_to edit_mypage_url
+    end
+    
     private
     
     def set_user
