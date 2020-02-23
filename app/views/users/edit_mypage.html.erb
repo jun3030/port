@@ -63,23 +63,31 @@
       </ul>
     </li>
     </div>
-    <div class="message"> <!-- メッセージルームを作成する -->
-      <% if @user.id == current_user.id %>
-      <% else %>
-        <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
-        <% if @isRoom == true %>
-          <p><a href="/rooms/<%= @roomId %>">メッセージ</a>
-        <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
-        <% else %>
-          <%= form_for @room do |f| %>
-            <%= fields_for @entry do |e| %>
-              <%= e.hidden_field :user_id, value: @user.id %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <div class="from-instagram">メッセージ</div>　 <!-- メッセージルームを作成する -->
+      </a>
+    　<ul class="dropdown-menu">
+        <li>      
+          <% if @user.id == current_user.id %>
+          <% else %>
+          <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
+            <% if @isRoom == true %>
+              <p><a href="/rooms/<%= @roomId %>">メッセージ</a>
+            <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
+            <% else %>
+            <%= form_for @room do |f| %>
+              <%= fields_for @entry do |e| %>
+                <%= e.hidden_field :user_id, value: @user.id %>
+              <% end %>
+              <%= f.submit "メッセージ" %>
             <% end %>
-            <%= f.submit "メッセージ" %>
           <% end %>
-        <% end %>
-      <% end %>
+          <% end %>
+        </li>
+      </ul>
     </div>
+    </li>
     <div class="Footprint">
       <%= link_to "足跡" %>
     </div>
@@ -160,6 +168,8 @@
   <% end %>
   <% end %>　
 </div>
+
+
 
 
 
