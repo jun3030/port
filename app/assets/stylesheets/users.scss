@@ -227,3 +227,9 @@ ul li, ol li {
     display: flex;
     background: orange;
 }
+
+.message-create {
+    background: #fffcf4;
+    border-radius :8px;/*角の丸み*/
+    box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+}
