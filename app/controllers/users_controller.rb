@@ -48,6 +48,13 @@ class UsersController < ApplicationController
     @userEntry=Entry.where(user_id: @user.id)
     
     if @user.id == current_user.id
+      # 今までやりとりしたuserを全て表示する
+      if current_user.entries.where(user_id: current_user.id).present?
+        @room_ids = current_user.entries.pluck(:room_id) # 現在ログインしているユーザーが持っているroom_idを取得
+        
+          @users = Entry.where(room_id: @room_ids).where.not(user_id: current_user.id)
+        
+      end
     else
       @currentUserEntry.each do |cu|
         @userEntry.each do |u|
@@ -58,7 +65,8 @@ class UsersController < ApplicationController
         end
       end
       if @isRoom
-      else
+     
+      else   # やりとりしたことがないuserだった場合room_idが初めて作られる。
         @room = Room.new
         @entry = Entry.new
       end

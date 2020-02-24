@@ -58,7 +58,7 @@
     </a>
     <ul class="dropdown-menu">
       <li>      
-      <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2>
+      <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2><hr>
       <!-- マイページに写真、動画を追加する -->
         <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
             
@@ -84,13 +84,19 @@
       </a>
         <ul class="dropdown-menu">
           <li>      
-          <% if @user.id == current_user.id %>
+          <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+            履歴<br><hr>
+            <% if current_user.entries.where(user_id: current_user.id).present? %>
+              <% @users.each do |user| %>
+                <p>
+                  <span><%= image_tag User.find(user.user_id).image, :size => "30x30" %><a href="/rooms/<%= user.room_id %>"><%= User.find(user.user_id).name  %></a></span>
+                </p>
+              <% end %>
+            <% end %>
           <% else %>
-                <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
-            <% if @isRoom == true %>
+            <% if @isRoom == true %>  <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っている場合  -->
               <p><a href="/rooms/<%= @roomId %>">メッセージ</a>
-                  <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
-            <% else %>
+            <% else %>  <!-- 現在ログイン中のuserが回覧中のuserと共通のroom.idを持っていなかった場合  -->
               <%= form_for @room do |f| %>
                 <%= fields_for @entry do |e| %>
                   <%= e.hidden_field :user_id, value: @user.id %>
@@ -201,12 +207,5 @@
   <% end %>
   <% end %>　
 </div>
-
-
-  <li>a</li>
-  <li>b</li>
-  <li>c</li>
-
-
 
 
