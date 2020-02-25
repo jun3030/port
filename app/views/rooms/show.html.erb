@@ -1,4 +1,4 @@
-<h1>DM</h1>
+<h1>メッセージルーム</h1>
 
 <h4>参加者</h4>
 <% @entries.each do |e| %>
@@ -18,16 +18,21 @@
         </div>
         <div>                        <!-- flex 画像横のユーザー情報 -->
           <div class="room-user-name">
-            <small><strong><%= m.user.name %>さん</a></strong></small>
+            <small><strong><%= m.user.name %></a></strong></small>
           </div>
           <div class="message-create">
             <strong><%= m.content %></strong>
           </div>
+          <span class="delete-btn"><%= link_to ":削除", message_delete_path(@room, m), method: :delete, data: { confirm: '選択したメッセージを削除しますか?' } %></span>
         </div>  <!-- flex 画像横のユーザー情報 -->
   </div>                       <!-- flex 親要素 end -->
     <hr>
+    
+    
   <% else %>  <!-- m.user.name == current_user.name -->
-    <div class="message-room-flex"> <!-- flex 親要素 -->
+  
+  
+    <div class="message-room-flex-right"> <!-- flex 親要素 -->
         <div class="room-image">
           <%= image_tag m.user.image, :size => "40" %>
         </div>
@@ -38,6 +43,12 @@
           <div class="message-create">
             <strong><%= m.content %></strong>
           </div>
+          
+          <% if m.user.name == current_user.name %>
+          <span class="delete-btn"><%= link_to ":削除", message_delete_path(@room, m), method: :delete, data: { confirm: '選択したメッセージを削除しますか?' } %></span>
+          <% else %>
+          <% end %>
+          
         </div>  <!-- flex 画像横のユーザー情報 -->
     </div>                       <!-- flex 親要素 end -->
     <hr>
@@ -55,7 +66,7 @@
 
 
 <%= form_for @message do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %> <!-- :placeholderはvalueのこと テキスト入力欄に最初から入っている文字のこと -->
+  <%= f.text_area :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %> <!-- :placeholderはvalueのこと テキスト入力欄に最初から入っている文字のこと -->
   <%= f.hidden_field :room_id, :value => @room.id %>
   <br>
   <%= f.submit "投稿する" %>

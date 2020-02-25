@@ -225,11 +225,37 @@ ul li, ol li {
 
 .message-room-flex {
     display: flex;
-    background: orange;
+    
+}
+
+.message-room-flex-right {
+    display: flex;
+    
+    justify-content: flex-end; /* フレックス要素を右寄せ */
+    
 }
 
 .message-create {
     background: #fffcf4;
     border-radius :8px;/*角の丸み*/
     box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+}
+
+
+
+.room-image {
+  
+}
+
+.room-user-name {
+  
+}
+
+.message-create {
+  
+}
+
+.delete-btn {
+    display: block;
+    text-align: left; 
 }

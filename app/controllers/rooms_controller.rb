@@ -18,6 +18,9 @@ class RoomsController < ApplicationController
       end
     end
     
+    def destroy
+    end
+    
     private
     
     def entry_params

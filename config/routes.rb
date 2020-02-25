@@ -31,7 +31,13 @@ Rails.application.routes.draw do
     
     patch 'urls/:id/users_imaeg_and_video_url', to: 'urls#users_imaeg_and_video_url', as: :users_url
   end
-  resources :messages, only: [:create]
-  resources :rooms, only: [:create, :show, :index]
- 
+  
+  delete 'rooms/:id/messages/:message_id/message_delete', to: 'messages#destroy', as: :message_delete
+  
+  resources :messages, only: [:create] do
+  end
+  
+  resources :rooms, only: [:create, :show, :index] do
+  end
+  
 end

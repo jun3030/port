@@ -53,6 +53,7 @@ class UsersController < ApplicationController
         @room_ids = current_user.entries.pluck(:room_id) # 現在ログインしているユーザーが持っているroom_idを取得
         
           @users = Entry.where(room_id: @room_ids).where.not(user_id: current_user.id)
+         
         
       end
     else

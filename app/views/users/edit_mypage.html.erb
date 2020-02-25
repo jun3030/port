@@ -86,7 +86,7 @@
           <li>      
           <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
             履歴<br><hr>
-            <% if current_user.entries.where(user_id: current_user.id).present? %>
+            <% if Message.all.where(room_id: @room_ids).present? %>
               <% @users.each do |user| %>
                 <p>
                   <span><%= image_tag User.find(user.user_id).image, :size => "30x30" %><a href="/rooms/<%= user.room_id %>"><%= User.find(user.user_id).name  %></a></span>
