@@ -176,7 +176,6 @@ class UsersController < ApplicationController
       unless current_user.footprints.where(visited_id: @user.id).present?
         @footprint = Footprint.new(user_id: current_user.id, visiter_id: current_user.id, visited_id: @user.id)
         @footprint.save
-        flash.now[:info] = "作成"
       end
     end
   end
