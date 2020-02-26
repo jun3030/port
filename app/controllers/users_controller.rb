@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   
   before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram]
   before_action :set_instagram_create, only: [:edit_mypage]
+  before_action :create_footprint, pnly: [:edit_mypage]
+  
   
   def new
     @user = User.new
@@ -46,13 +48,16 @@ class UsersController < ApplicationController
     # メッセージルームのidを作成
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
+    # 足跡機能
+    @footprints = Footprint.all.where(visited_id: @user.id).pluck(:visiter_id)
+   
     
     if @user.id == current_user.id
       # 今までやりとりしたuserを全て表示する
       if current_user.entries.where(user_id: current_user.id).present?
         @room_ids = current_user.entries.pluck(:room_id) # 現在ログインしているユーザーが持っているroom_idを取得
         
-          @users = Entry.where(room_id: @room_ids).where.not(user_id: current_user.id)
+          @users = Entry.where(room_id: @room_ids).where.not(user_id: current_user.id) # 現在ログイン中のユーザーが持っているroom_idと同じidを持っているユーザーを表示
          
         
       end
@@ -160,5 +165,21 @@ class UsersController < ApplicationController
       @instagram = @user.urls.where.not(id: nil)
     end
   end
+  
+  def footprint_params
+    params.require(:footprint).permit(:visiter_id, :visited_id)
+  end
+    
+  def create_footprint
+    @user = User.find(params[:id])
+    unless (current_user == @user)
+      unless current_user.footprints.where(visited_id: @user.id).present?
+        @footprint = Footprint.new(user_id: current_user.id, visiter_id: current_user.id, visited_id: @user.id)
+        @footprint.save
+        flash.now[:info] = "作成"
+      end
+    end
+  end
+  
  
 end

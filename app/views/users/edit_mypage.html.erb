@@ -118,6 +118,9 @@
       </a>
         <ul class="dropdown-menu">
           <li>
+            <% @footprints.each do |footprint| %>
+              <span><%= image_tag User.find(footprint).image, :size => "30x30" %><%= link_to "#{User.find(footprint).name}", edit_mypage_path(User.find(footprint).id) %></span><hr>
+            <% end %>
           </li>  
         </ul>
     </li>
@@ -209,4 +212,3 @@
 </div>
 
 
-<%= @isRoom %>
