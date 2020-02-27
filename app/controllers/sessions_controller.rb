@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in(user)
       
       flash[:success] = "ログインしました。"
-      redirect_to users_profile_url(user)
+      redirect_to edit_mypage_url(user)
     else
       flash.now[:danger] = '認証に失敗しました。'
       render :new
