@@ -23,7 +23,7 @@
           <div class="message-create">
             <strong><%= m.content %></strong>
           </div>
-          <span class="delete-btn"><%= link_to ":削除", message_delete_path(@room, m), method: :delete, data: { confirm: '選択したメッセージを削除しますか?' } %></span>
+          <span class="delete-btn"><%= m.already_read %><%= link_to " :削除", message_delete_path(@room, m), method: :delete, data: { confirm: '選択したメッセージを削除しますか?' } %></span>
         </div>  <!-- flex 画像横のユーザー情報 -->
   </div>                       <!-- flex 親要素 end -->
     <hr>
@@ -43,6 +43,8 @@
           <div class="message-create">
             <strong><%= m.content %></strong>
           </div>
+          
+          
           
           <% if m.user.name == current_user.name %>
           <span class="delete-btn"><%= link_to ":削除", message_delete_path(@room, m), method: :delete, data: { confirm: '選択したメッセージを削除しますか?' } %></span>
@@ -72,4 +74,4 @@
   <%= f.submit "投稿する" %>
 <% end %>
 
-<%= link_to "投稿一覧へ戻る", posts_index_path %>
+

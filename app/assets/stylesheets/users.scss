@@ -259,3 +259,14 @@ ul li, ol li {
     display: block;
     text-align: left; 
 }
+
+/*  新規メッセージのお知らせ表示 */
+
+.already_read {
+    color: red;
+}
+
+/* 公開ボタン */
+ .public-btn {
+    text-align: center;
+ }

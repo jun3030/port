@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
     
+    before_action :already_read, only: :show
+    
     def create
       @room = Room.create
       @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)
@@ -25,5 +27,12 @@ class RoomsController < ApplicationController
     
     def entry_params
       params.require(:entry).permit(:user_id, :room_id).merge(:room_id => @room.id)
+    end
+    
+    def already_read
+     @room = Room.find(params[:id])
+     if current_user && @room.messages.where.not(user_id: current_user.id).where(already_read: "未読").present?
+       @room.messages.update(already_read: "既読")
+     end
     end
 end

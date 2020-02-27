@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def edit_mypage
     @url = Url.new
     @test_id = @user.id
-    
+    @unread_counts = current_user.messages.where(already_read: "未読").count
     # メッセージルームのidを作成
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)

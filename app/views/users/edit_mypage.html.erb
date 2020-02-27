@@ -89,7 +89,11 @@
             <% if Message.all.where(room_id: @room_ids).present? %>
               <% @users.each do |user| %>
                 <p>
-                  <span><%= image_tag User.find(user.user_id).image, :size => "30x30" %><a href="/rooms/<%= user.room_id %>"><%= User.find(user.user_id).name  %></a></span>
+                  <span><%= image_tag User.find(user.user_id).image, :size => "30x30" %><%= link_to "#{user.user.name}", room_path(user.room_id) %>
+                        <% if user.user.messages.where(already_read: "未読", room_id: user.room_id).count > 0 %>
+                          <span class="already_read">new</span>
+                        <% end %>
+                  </span>
                 </p>
               <% end %>
             <% end %>
@@ -205,9 +209,12 @@
     <% end %> <!-- @instagram.each do |test| -->
     <% end %> <!-- if @user.third_token.present? -->
   </ul>
+  <hr>
+  <div class="public-btn">
   <% if current_user == @user %>
  　　 <%= f.submit "公開情報を変更" %>
   <% end %>
+  </div>
   <% end %>　
 </div>
 
