@@ -1,0 +1,2 @@
+module FavoriteFolderHelper
+end

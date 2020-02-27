@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     post 'urls/add_mypage_content_create', to: 'urls#add_mypage_content_create', as: :add_mypage_content_create # マイページへ写真、動画をアップロードする
     
     patch 'urls/:id/users_imaeg_and_video_url', to: 'urls#users_imaeg_and_video_url', as: :users_url
+    
+    post 'favorite_folders/:id/create', to: 'favorite_folders#create', as: :create
+    delete 'favorite_folders/:id/delete', to: 'favorite_folders#destroy', as: :destroy
   end
   
   delete 'rooms/:id/messages/:message_id/message_delete', to: 'messages#destroy', as: :message_delete
@@ -40,4 +43,5 @@ Rails.application.routes.draw do
   resources :rooms, only: [:create, :show, :index] do
   end
   
+ 
 end

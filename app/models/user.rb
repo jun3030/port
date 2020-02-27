@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :footprints, dependent: :destroy
-  
+  has_many :favorite_folders, class_name: 'FavoriteFolder', dependent: :destroy
   
   before_save { self.email = email.downcase }
 

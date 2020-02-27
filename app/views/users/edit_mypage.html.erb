@@ -84,7 +84,22 @@
       </a>
         <ul class="dropdown-menu">
           <li>
-            
+            <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+             登録リスト<br><hr>
+              <% @favorite_users_id.each do |id| %>
+                
+                <span>
+                  <%= image_tag User.find(id).image, :size => "30x30" %><%= link_to "#{User.find(id).name}", edit_mypage_path(User.find(id)) %>
+                  <%= link_to "　解除", user_destroy_path(current_user, User.find(id)), method: :delete, data: { confirm: 'お気に入りを解除しますか?' } %>
+                </span>
+                <hr>
+              <% end %>
+            <% else %>
+            <%= form_with(model: @favorite, url: user_create_path(current_user, @user), method: :post, local: true) do |f| %>
+              <%= f.hidden_field :favorite_user, value: @user.id %>
+              <%= f.submit "追加" %>
+            <% end %>
+            <% end %>
           </li>  
         </ul>
     </li>
@@ -120,7 +135,7 @@
                 <%= fields_for @entry do |e| %>
                   <%= e.hidden_field :user_id, value: @user.id %>
                 <% end %>
-                <%= f.submit "メッセージ" %>
+                <%= f.submit "チャットルームへ" %>
               <% end %>
             <% end %>
           <% end %>

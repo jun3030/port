@@ -50,7 +50,12 @@ class UsersController < ApplicationController
     @userEntry=Entry.where(user_id: @user.id)
     # 足跡機能
     @footprints = Footprint.all.where(visited_id: @user.id).pluck(:visiter_id)
-   
+    # お気に入り機能
+    @favorite = FavoriteFolder.new
+    @favorite_users_id = current_user.favorite_folders.pluck(:favorite_user)
+    
+      
+  
     
     if @user.id == current_user.id
       # 今までやりとりしたuserを全て表示する
@@ -170,6 +175,7 @@ class UsersController < ApplicationController
     params.require(:footprint).permit(:visiter_id, :visited_id)
   end
     
+  
   def create_footprint
     @user = User.find(params[:id])
     unless (current_user == @user)

@@ -10,12 +10,11 @@ class MessagesController < ApplicationController
         end
     end
     
-    
     def destroy
-      @room = Room.find(params[:id])
-      @message = Message.find(params[:message_id])
+      @message = FavoriteFolder(params[:message_id])
       @message.destroy
       flash[:info] = "メッセージを削除しました。"
       redirect_to room_url
     end
+    
 end
