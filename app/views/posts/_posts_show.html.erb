@@ -4,24 +4,40 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h1 class="modal-title"><%= @post.title %></h1>
     </div>
-    <div class="modal-body">
-    <div class="pest">
-     <% if @post.from_mypage_data? %>
-      <% if "mp4".in?(@post.from_mypage_data) %>
-        <div class="video"><%= video_tag @post.from_mypage_data, muted: true, controls: true , :size => "350x260"%></div>
-      <% else %>
-        <div class="video"><%= image_tag @post.from_mypage_data, :size => "350x260"%></div>
-      <% end %>
-    <% else %>
-      <% if @post.video?  %>
-          <div class="video"><%= video_tag @post.video, muted: true, controls: true , :size => "350x260"%></div>
-      <% else %>
-          <div class="video"><%= image_tag @post.posts_image, :size => "350x260"%></div>
-      <% end %>
-    <% end %>
-    </div>
-    </div>
+    
+    
+    <div class="modal-body"><!-- modal-body -->
+      
+      
+      <div class="image_movie">
+         <% if @post.from_mypage_data? %>
+           <% if "mp4".in?(@post.from_mypage_data) %>
+             <div class="video"><%= video_tag @post.from_mypage_data, muted: true, controls: true , :size => "430x430"%></div>
+           <% else %>
+             <div class="video"><%= image_tag @post.from_mypage_data, :size => "350x260"%></div>
+           <% end %>
+         <% else %>
+           <% if @post.video?  %>
+             <div class="video"><%= video_tag @post.video, muted: true, controls: true , :size => "350x260"%></div>
+           <% else %>
+             <div class="video"><%= image_tag @post.posts_image, :size => "350x260"%></div>
+           <% end %>
+         <% end %>
+      </div>
+      
+      
+      <div class="user-infomation">
+        <div class="user-name">
+          <span class="user-name-font"><%= image_tag @user.image, :size => '50x50' %><%= @user.name %></span>
+        </div>
+        <div class="user-content">
+          <%= @post.content %>
+        </div>
+      </div>
+      
+      
+    </div><!-- modal-body -->
+      
   </div>
 </div>

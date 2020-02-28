@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   # モーダルウィンドウ
   def posts_show
     @post = Post.find(params["id"])
+    @user = User.find(params["user_id"])
   end
   # 記事投稿画面
   def users_posts
