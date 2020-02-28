@@ -4,16 +4,24 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-      <h1 class="modal-title"></h1>
+      <h1 class="modal-title"><%= @post.title %></h1>
     </div>
     <div class="modal-body">
-      <div class="row">
-       <div class="users_video">
-       
-          <%= video_tag @video, muted: true, controls: true %>
-       </div>
-       <h1>test</h1>
-      </div>
+    <div class="pest">
+     <% if @post.from_mypage_data? %>
+      <% if "mp4".in?(@post.from_mypage_data) %>
+        <div class="video"><%= video_tag @post.from_mypage_data, muted: true, controls: true , :size => "350x260"%></div>
+      <% else %>
+        <div class="video"><%= image_tag @post.from_mypage_data, :size => "350x260"%></div>
+      <% end %>
+    <% else %>
+      <% if @post.video?  %>
+          <div class="video"><%= video_tag @post.video, muted: true, controls: true , :size => "350x260"%></div>
+      <% else %>
+          <div class="video"><%= image_tag @post.posts_image, :size => "350x260"%></div>
+      <% end %>
+    <% end %>
+    </div>
     </div>
   </div>
 </div>
