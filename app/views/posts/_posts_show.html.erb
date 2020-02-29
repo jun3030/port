@@ -15,13 +15,13 @@
            <% if "mp4".in?(@post.from_mypage_data) %>
              <div class="video"><%= video_tag @post.from_mypage_data, muted: true, controls: true , :size => "430x430"%></div>
            <% else %>
-             <div class="video"><%= image_tag @post.from_mypage_data, :size => "350x260"%></div>
+             <div class="video"><%= image_tag @post.from_mypage_data, :size => "430x430"%></div>
            <% end %>
          <% else %>
            <% if @post.video?  %>
-             <div class="video"><%= video_tag @post.video, muted: true, controls: true , :size => "350x260"%></div>
+             <div class="video"><%= video_tag @post.video, muted: true, controls: true , :size => "430x430"%></div>
            <% else %>
-             <div class="video"><%= image_tag @post.posts_image, :size => "350x260"%></div>
+             <div class="video"><%= image_tag @post.posts_image, :size => "430x430"%></div>
            <% end %>
          <% end %>
       </div>
