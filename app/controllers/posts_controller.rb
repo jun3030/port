@@ -18,6 +18,11 @@ class PostsController < ApplicationController
     @ganre = ["ポップス","ロック","ハードロック・ヘヴィメタル","パンク・メロコア","ハードコア","スラッシュメタル・デスメタル",
               "ビジュアル系","ファンク・ブルース","ジャズ・フュージョン","カントリー・フォーク","スカ・ロカビリー","ソウル",
               "ゴスペル・アカペラ","ボサノバ・ラテン","クラシック","ヒップホップ・レゲエ","ハウス・テクノ","アニソン・ボカロ","その他"]
+    @area = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+             "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+             "新潟県","富山県","石川県","福井県","山梨県","長野県",
+             "岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
+             "鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県", "沖縄県"]
     @post = Post.new
     if params[:date]
      @from_mypage_data = Post.new(from_mypage_data: params[:date])
@@ -31,7 +36,7 @@ class PostsController < ApplicationController
                        activity_area: post_params[:activity_area], activity_day: post_params[:activity_day], course_of_action: post_params[:course_of_action],
                        recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], 
                        recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
-      @post.save
+      @post.save(context: :users_create_posts)
       redirect_to user_posts_url
      end
     else
@@ -44,7 +49,7 @@ class PostsController < ApplicationController
                           activity_area: post_params[:activity_area], activity_day: post_params[:activity_day], course_of_action: post_params[:course_of_action],
                           recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], 
                           recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
-         @post.save
+         @post.save(context: :users_create_posts)
          flash[:success] = "記事を投稿しました。"
          redirect_to posts_index_url
       elsif params[:post][:from_mypage_data] && (params[:post][:posts_image].present? || params[:post][:video].present?)
@@ -63,12 +68,12 @@ class PostsController < ApplicationController
                            recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], 
                            recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
           @post[:video] = params[:post][:video]
-          if @post.save
+          if @post.save(context: :users_create_posts)
             flash[:success] = "記事を投稿しました。"
             redirect_to posts_index_url
           else
-            flash[:danger] = "作成に失敗しました。"
-            render :index
+            flash[:danger] = "作成に失敗しました。必須項目は全て埋めてください。"
+            redirect_to user_posts_url
           end
         end
       end

@@ -34,9 +34,12 @@
     <% end %>
     </tr>
     <tr>
-      <th class="users-posts-table">活動地域(必須)</th>
-      <td><%= f.select :activity_area,  Post.activity_areas.keys, {} %></td>
+      <th class="users-posts-table">活動地域(必須:複数可)</th>
+      <td><% @area.each do |area| %>
+      <%= area %><%= f.check_box :activity_area, {multiple: true}, area, nil %>
+      <% end %></td>
     </tr>
+    
     <tr>
       <th class="users-posts-table">募集楽器パート(必須:複数可)</th>
       <td><% @part.each do |part| %>

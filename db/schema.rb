@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 20200229005722) do
     t.string "posts_image"
     t.string "video"
     t.string "from_mypage_data"
-    t.boolean "public_article" # 記事の公開、非公開
-    t.string "article_kind" # 記事の種類 募集記事か加入記事か
-    t.string "activity_area" # 活動地域
-    t.string "course_of_action" # 活動の方向性
-    t.string "activity_day" # 活動曜日
-    t.string "recruitment_gender" # 募集性別
-    t.integer "recruitment_age" # 募集年齢
-    t.string "recruitment_part" # 募集パート
-    t.string "demosound" # デモ音源
-    t.string "band_genre" # バンドの音楽ジャンル
+    t.boolean "public_article"
+    t.string "article_kind"
+    t.string "activity_area"
+    t.string "course_of_action"
+    t.string "activity_day"
+    t.string "recruitment_gender"
+    t.integer "recruitment_age"
+    t.string "recruitment_part"
+    t.string "demosound"
+    t.string "band_genre"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
