@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200227111221) do
+ActiveRecord::Schema.define(version: 20200229005722) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 20200227111221) do
     t.string "posts_image"
     t.string "video"
     t.string "from_mypage_data"
+    t.boolean "public_article"
+    t.string "article_kind"
+    t.string "activity_area"
+    t.string "course_of_action"
+    t.string "activity_day"
+    t.string "recruitment_gender"
+    t.integer "recruitment_age"
+    t.string "recruitment_part"
+    t.string "demosound"
+    t.string "band_genre"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
