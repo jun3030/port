@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   
   def edit_mypage
     @url = Url.new
-    @test_id = @user.id
     @unread_counts = current_user.messages.where(already_read: "未読").count
     # メッセージルームのidを作成
     @currentUserEntry=Entry.where(user_id: current_user.id)
@@ -89,6 +88,8 @@ class UsersController < ApplicationController
   end
   #　インスタグラムのデータを取り込む
   def upload_instagram
+    
+  
      @user.attributes = { first_token: instagram_params[:first_token], second_token: instagram_params[:second_token], third_token: instagram_params[:third_token], app_id: instagram_params[:app_id], 
                           app_secret: instagram_params[:app_secret], media_count: instagram_params[:media_count]}
     if @user.save(context: :upload_instagram)
@@ -120,6 +121,8 @@ class UsersController < ApplicationController
         flash[:danger] = "コンテンツが表示されない場合は入力情報を確認してください。"
         redirect_to edit_mypage_url
       end
+  
+  
   end
    
   def edit_picture

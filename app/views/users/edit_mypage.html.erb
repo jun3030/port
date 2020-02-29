@@ -60,7 +60,8 @@
       <li>      
       <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2><hr>
       <!-- マイページに写真、動画を追加する -->
-        <%= form_with(model: @url, url: user_add_mypage_content_create_path(@test_id), local: true) do |f| %>
+      
+        <%= form_with(model: @url, url: user_add_mypage_content_create_path(@user.id), local: true) do |f| %>
             
             <%= f.label :mypage_image %><br>
             <%= f.file_field :mypage_image %><br>
@@ -85,7 +86,8 @@
         <ul class="dropdown-menu">
           <li>
             <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
-             登録リスト<br><hr>
+              登録リスト<br><hr>
+              <% if @favorite_users_id.present? %>
               <% @favorite_users_id.each do |id| %>
                 
                 <span>
@@ -95,10 +97,11 @@
                 <hr>
               <% end %>
             <% else %>
-            <%= form_with(model: @favorite, url: user_create_path(current_user, @user), method: :post, local: true) do |f| %>
-              <%= f.hidden_field :favorite_user, value: @user.id %>
-              <%= f.submit "追加" %>
-            <% end %>
+              <%= form_with(model: @favorite, url: user_create_path(current_user, @user), method: :post, local: true) do |f| %>
+                <%= f.hidden_field :favorite_user, value: @user.id %>
+                <%= f.submit "追加" %>
+              <% end %>
+              <% end %>
             <% end %>
           </li>  
         </ul>
@@ -152,8 +155,10 @@
       </a>
         <ul class="dropdown-menu">
           <li>
-            <% @footprints.each do |footprint| %>
-              <span><%= image_tag User.find(footprint).image, :size => "30x30" %><%= link_to "#{User.find(footprint).name}", edit_mypage_path(User.find(footprint).id) %></span><hr>
+            <% if @footprints.present? %>
+              <% @footprints.each do |footprint| %>
+                <span><%= image_tag User.find(footprint).image, :size => "30x30" %><%= link_to "#{User.find(footprint).name}", edit_mypage_path(User.find(footprint).id) %></span><hr>
+              <% end %>
             <% end %>
           </li>  
         </ul>
