@@ -88,21 +88,23 @@
             <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
               登録リスト<br><hr>
               <% if @favorite_users_id.present? %>
-              <% @favorite_users_id.each do |id| %>
-                
-                <span>
-                  <%= image_tag User.find(id).image, :size => "30x30" %><%= link_to "#{User.find(id).name}", edit_mypage_path(User.find(id)) %>
-                  <%= link_to "　解除", user_destroy_path(current_user, User.find(id)), method: :delete, data: { confirm: 'お気に入りを解除しますか?' } %>
-                </span>
-                <hr>
-              <% end %>
+                <% @favorite_users_id.each do |id| %>
+                  
+                  <span>
+                    <%= image_tag User.find(id).image, :size => "30x30" %><%= link_to "#{User.find(id).name}", edit_mypage_path(User.find(id)) %>
+                    <%= link_to "　解除", user_destroy_path(current_user, User.find(id)), method: :delete, data: { confirm: 'お気に入りを解除しますか?' } %>
+                  </span>
+                  <hr>
+          
+                <% end %>
+              <% end %> <!-- if @favorite_users_id.present? -->
             <% else %>
               <%= form_with(model: @favorite, url: user_create_path(current_user, @user), method: :post, local: true) do |f| %>
                 <%= f.hidden_field :favorite_user, value: @user.id %>
                 <%= f.submit "追加" %>
               <% end %>
-              <% end %>
-            <% end %>
+      
+            <% end %> <!--  if @user.id == current_user.id -->
           </li>  
         </ul>
     </li>

@@ -1,8 +1,24 @@
+
+
 <h1>記事作成</h1><hr>
+<%= render 'shared/post_error_messages', object: @user %>
 
 <%= form_with(model: @post, url: user_create_posts_path, local: true) do |f| %>
   <table class="table table-bordered table-striped profile-table">
     <%= render 'shared/error_messages' %>
+    
+    <tr>
+      <th class="users-posts-table">
+        <%= f.label "記事の公開、非公開" %>
+        <div>※公開する場合はチェックボックスにサインしてください</div>
+      </th>
+      <td>
+        <span>公開する</span><%= f.check_box :public_article, class: "form-control" %>
+
+      </td>
+    <tr>
+    
+    
     <tr>
       <th class="users-posts-table"><%= f.label "記事タイトル(必須)" %></th>
       <td><%= f.text_field :title, class: "form-control" %></td>
