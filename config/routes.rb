@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get 'posts/:id/posts_show', to: 'posts#posts_show', as: :posts_show # モーダルウィンドウ
     get 'posts/users_posts', to: 'posts#users_posts', as: :posts #　記事を投稿するページ
     post 'posts/users_create_posts', to: 'posts#users_create_posts', as: :create_posts #　記事を作る
+    get 'posts/users_edit_posts', to: 'posts#users_edit_posts', as: :edit_posts #　記事を編集するページ
+    patch 'posts/users_update_posts', to: 'posts#users_update_posts', as: :update_posts #　記事を更新
 
     
     get 'urls/add_mypage_content', to: 'urls#add_mypage_content', as: :add_mypage_content # マイページへ写真、動画をアップロードする為のページ

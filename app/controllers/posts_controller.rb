@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   
-  before_action :set_user, only: [:posts_show, :users_posts, :users_create_posts]
+  before_action :set_user, only: [:posts_show, :users_posts, :users_create_posts, :users_edit_posts, :users_update_posts]
   before_action :set_post, only: [:posts_show]
-  before_action :all, only: [:users_posts, :users_create_posts]
+  before_action :all, only: [:users_posts, :users_create_posts, :users_edit_posts]
   
   def index
     @users = User.all
@@ -32,6 +32,14 @@ class PostsController < ApplicationController
       else
         render :users_posts
       end
+  end
+  
+  def users_edit_posts
+    @post = Post.new
+    @post_id = params[:data]
+  end
+  
+  def users_update_posts
   end
   
   private

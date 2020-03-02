@@ -87,6 +87,7 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 1)
              
 Post.create!(title: "メンバー募集",
@@ -95,6 +96,7 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 2)
              
 Post.create!(title: "メンバー募集",
@@ -103,6 +105,7 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 3)
 
 Post.create!(title: "メンバー募集",
@@ -111,6 +114,7 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 4)
              
 Post.create!(title: "メンバー募集",
@@ -119,6 +123,7 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 5)
              
 Post.create!(title: "メンバー募集",
@@ -127,5 +132,6 @@ Post.create!(title: "メンバー募集",
              recruitment_part: "ギター",
              band_genre: "ロック",
              activity_area: "京都府",
+             public_article: true,
              user_id: 6)
              
