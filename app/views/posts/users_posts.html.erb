@@ -81,6 +81,10 @@
       <td><%= f.select :recruitment_gender,  ['指定なし', '男', '女'] %></td>
     <tr>
     <tr>
+      <th class="users-posts-table">募集する年齢(任意)</th>
+      <td><%= f.number_field :post_age %>~<%= f.number_field :recruitment_age %></td>
+    <tr>
+    <tr>
       <th class="users-posts-table">バンド音源(任意)</th>
       <td><%= f.text_field :demosound, class: "form-control" %></td>
     <tr>

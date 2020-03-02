@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   
   def index
     @users = User.all
-    @posts = Post.all
   end
   # モーダルウィンドウ
   def posts_show
@@ -22,10 +21,10 @@ class PostsController < ApplicationController
   end
   # 記事を作成
   def users_create_posts
-
+      
       @post = Post.new(user_id: current_user.id, title: post_params[:title], content: post_params[:content], from_mypage_data: post_params[:from_mypage_data], posts_image: post_params[:posts_image], video: post_params[:video],
-                       activity_area: post_params[:activity_area], activity_day: post_params[:activity_day], course_of_action: post_params[:course_of_action],
-                       recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], 
+                       activity_area: post_params[:activity_area], activity_day: post_params[:activity_day], course_of_action: post_params[:course_of_action], recruitment_age: post_params[:recruitment_age], 
+                       recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], post_age: post_params[:post_age],
                        recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
       if @post.save(context: :users_create_posts)
         flash[:info] = "記事を作成しました。"
@@ -46,7 +45,7 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title, :content, :from_mypage_data, :video, :posts_image, :activity_day, :course_of_action, :recruitment_gender,:demosound, :public_article,
+    params.require(:post).permit(:title, :content, :from_mypage_data, :video, :posts_image, :activity_day, :course_of_action, :recruitment_gender,:demosound, :public_article, :recruitment_age, :post_age,
                                  recruitment_part: [], band_genre: [], activity_area: [])
   end
   
