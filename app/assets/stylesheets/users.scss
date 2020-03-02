@@ -270,6 +270,7 @@ ul li, ol li {
 .split-item{
     display: table-cell;
     text-align: center;
+    
     width: 50%;
    
    
@@ -281,6 +282,7 @@ ul li, ol li {
 }
 .split-left__inner{
     height: 100%;
+    margin-top: 75px;
     position: fixed;
     width: 50%;
 }
@@ -292,7 +294,36 @@ ul li, ol li {
 }
 
 .split-right__inner{
-    height: 450px;
+    height: 600px;
   
 }
+/* モーダル　基本データのタグ */
+.basic-data-tag {
+    
+    padding-left: 30px;
+    text-align: left;
+}
 
+.modal-text {
+    font-size: 11px;
+    text-align:center;
+}
+
+.modal-text-2 {
+    font-size: 11px;
+    
+}
+
+/* modalのテーブル*/
+.modal-profile-table {
+    
+}
+
+div.scr{
+  
+  padding-left: 40px;
+  width: 400px;
+  height: 125px;
+  overflow: scroll;
+  
+}
