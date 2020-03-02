@@ -199,27 +199,11 @@ ul li, ol li {
     text-align: center;
 }
 
-/* モーダル */
-.users_video {
-    
-    width: 100px;
-
-}
-
-.side-bar-content {
-    display: flex;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 125px;
-    width: 185px;
-    height: 150px;
-    border: 1px solid;
-}
 
 
-.tetete {
-    background: orange;
-}
+
+
+
 
 /* メッセージルーム */
 
@@ -276,10 +260,39 @@ ul li, ol li {
 /*users_postsのtable*/
 .users-posts-table {
     width:250px;
-    
+
 }
 
-.table-in {
-    text-align: right;
-    background: orange;
+.split{
+    display: table;
+    width: 100%;    
 }
+.split-item{
+    display: table-cell;
+    text-align: center;
+    width: 50%;
+   
+   
+}
+.split-left{
+    background: #000;
+    
+    position: relative;
+}
+.split-left__inner{
+    height: 100%;
+    position: fixed;
+    width: 50%;
+}
+
+.modal-user-name {
+    font-size: 20px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.split-right__inner{
+    height: 450px;
+  
+}
+
