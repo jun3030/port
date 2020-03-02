@@ -269,10 +269,7 @@ ul li, ol li {
 }
 .split-item{
     display: table-cell;
-    text-align: center;
-    
     width: 50%;
-   
    
 }
 .split-left{
@@ -283,6 +280,7 @@ ul li, ol li {
 .split-left__inner{
     height: 100%;
     margin-top: 75px;
+    margin-left: 15px;
     position: fixed;
     width: 50%;
 }
@@ -320,10 +318,20 @@ ul li, ol li {
 }
 
 div.scr{
-  
-  padding-left: 40px;
+  padding-left: 30px;
   width: 400px;
-  height: 125px;
-  overflow: scroll;
-  
+  height: 160px;
+  overflow-x: scroll;
+  overflow-wrap: break-word;
+　word-wrap: break-word;
+}
+
+.demosound {
+    text-align: center;
+}
+
+.kaka {
+    padding: 30px;
+    text-align: center;
+    
 }

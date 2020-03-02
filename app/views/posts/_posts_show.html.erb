@@ -23,7 +23,7 @@
     <div class="split-item split-right">
         <div class="split-right__inner">
            <div class="modal-user-name">
-             <%= image_tag @user.image, size: 35 %><%= @user.name %>(<%= @user.prefecture %>,<%= @user.age %><%= @user.sex %>)
+             <%= image_tag @user.image, size: 35 %><%= link_to "#{@user.name}#{@user.prefecture}#{@user.age}#{@user.sex}", edit_mypage_path(@user) %>
            </div>
            <div class="modal-basicinfo">
              
@@ -46,26 +46,41 @@
                </tr>
                
                <tr>
+                 
                  <th class="modal-text">活動地域</th>
-                 <td class="modal-text-2", colspan="3"><%= @post.activity_area.join('')  %></td>
+                 <td class="modal-text-2", colspan="3"><%= @post.activity_area.gsub(/[\[\]\"]/, "") %></td>
+                 
                </tr>
                <tr>
                  <th class="modal-text">募集楽器パート</th>
-                 <td class="modal-text-2", colspan="3"><%= @post.recruitment_part.join('') %></td>
+                 <td class="modal-text-2", colspan="3"><%= @post.recruitment_part.gsub(/[\[\]\"]/, "") %></td>
                </tr>
+               <tr>
+                 <th class="modal-text">バンドジャンル</th>
+                 <td class="modal-text-2", colspan="3"><%= @post.band_genre.gsub(/[\[\]\"]/, "") %></td>
+               </tr>
+               
              </table>
              
              
              <div class="areticle-content"></div>
                <h5 class="basic-data-tag">[記事内容]</h5>
                <div class="scr">
-                  <p>
-                    <%= @post.content %>
-                  </p>
-                </div>
+                 <p>
+                   <%= simple_format(@post.content) %>
+                 </p>
+              </div>
              </div>
              
              
+             <h5 class="basic-data-tag">[バンド音源]</h5>
+             <div class="demosound">
+               <%= raw Rinku.auto_link(h(@post.demosound)) %>
+             </div>
+             
+             <div class="kaka">
+               <%= link_to "#{@user.name}さんのページを詳しく見る", edit_mypage_path(@user), class: "btn btn-primary" %>
+             </div>
              
              
            </div><!-- modal-basicinfo -->

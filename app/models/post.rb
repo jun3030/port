@@ -13,7 +13,9 @@ class Post < ApplicationRecord
     validates :recruitment_part, presence: true, on: :users_create_posts
     validates :band_genre, presence: true, on: :users_create_posts
     
-
+    before_save :activity_area
+    
+   
  
   
 end
