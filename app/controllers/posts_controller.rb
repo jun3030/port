@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
-  before_action :set_user, only: [:posts_show, :users_posts, :users_create_posts, :users_edit_posts, :users_update_posts]
-  before_action :set_post, only: [:posts_show, :users_edit_posts, :users_update_posts]
+  before_action :set_user, only: [:posts_show, :users_posts, :users_create_posts]
+  before_action :set_post, only: [:posts_show]
   before_action :all, only: [:users_posts, :users_create_posts, :users_edit_posts]
   
   def index
@@ -35,11 +35,13 @@ class PostsController < ApplicationController
   end
   
   def users_edit_posts
-    
-    
+    @user = User.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
   
   def users_update_posts
+    @user = User.find(params[:id])
+    @post = Post.find(params[:post_id])
     if  @post.update(post_params)
       flash[:success] = "記事情報を更新しました。"
       redirect_to edit_mypage_url
@@ -65,7 +67,8 @@ class PostsController < ApplicationController
   end
   
   def update_post_params
-    params.require(:posts).permit(:title, images_attributes: [:content, :_destroy, :id])
+    params.require(:user).permit(posts: [:title, :content, :from_mypage_data, :video, :posts_image, :activity_day, :course_of_action, :recruitment_gender,:demosound, :public_article, :recruitment_age, :post_age,
+                                 recruitment_part: [], band_genre: [], activity_area: []])
   end
   
   def all
