@@ -51,6 +51,14 @@ class PostsController < ApplicationController
     end
   end
   
+  def users_destroy_posts
+    @user = User.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @post.destroy
+    flash[:info] = "記事を削除しました。"
+    redirect_to edit_mypage_url(current_user)
+  end
+  
   private
   
   def set_user

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   
   get 'users/:id/posts/:post_id/users_edit_posts', to: 'posts#users_edit_posts', as: :edit_posts #　記事を編集するページ
   patch 'users/:id/posts/:post_id/users_update_posts', to: 'posts#users_update_posts', as: :update_posts #　記事を更新
+  delete 'users/:id/posts/:post_id/users_delete_posts', to: 'posts#users_destroy_posts', as: :delete_posts #　記事を削除
   
   resources :users do
      
