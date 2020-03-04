@@ -27,8 +27,8 @@
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
-<% if @test.present? %>
-<% @test.each do |test| %>
+<% if @posts.present? %>
+<% @posts.each do |test| %>
   <%= test.title %>
 <% end %>
 <% end %>

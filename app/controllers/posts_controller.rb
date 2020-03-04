@@ -12,28 +12,28 @@ class PostsController < ApplicationController
     if params[:q].present? # 検索の条件わけ
       # 1, 2, 3
       if params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
       # 1, 2
       elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present?
-        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont])
       # 1
       elsif params[:q][:posts_activity_area_cont].present?
-        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont])
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont])
       # 2, 3
       elsif params[:q][:posts_recruitment_part_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @test = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
       # 2
       elsif params[:q][:posts_recruitment_part_cont].present? 
-        @test = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont])
       # 1, 3
       elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
       # 3
       elsif params[:q][:posts_band_genre_cont].present?
-        @test = Post.all.where(band_genre: params[:q][:posts_band_genre_cont])
+        @posts = Post.all.where(band_genre: params[:q][:posts_band_genre_cont])
       end
     else
-     @test = Post.all
+     @posts = Post.all
     end
   end
   # モーダルウィンドウ
