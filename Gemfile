@@ -20,6 +20,7 @@ gem 'rinku'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'roo'
+gem 'ransack'
 
 group :development, :test do
   gem 'sqlite3'

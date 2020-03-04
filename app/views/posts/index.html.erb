@@ -1,7 +1,37 @@
 <h2>投稿一覧</h2>
 
+<%= search_form_for(@search, url: posts_index_path)  do |f| %>
+ <table>
+    <tr>
+      <th class="users-posts-table">活動地域(必須:複数可)</th>
+      <td><% @area.each do |area| %>
+      <%= area %><%= f.check_box :posts_activity_area_cont, {multiple: true}, area, nil %>
+      <% end %></td>
+    </tr>
+  
+    <tr>
+      <th class="users-posts-table">募集楽器パート(必須:複数可)</th>
+      <td><% @part.each do |part| %>
+      <%= part %><%= f.check_box :posts_recruitment_part_cont, {multiple: true}, part, nil %>
+      <% end %></td>
+    <tr>
+    
+    <tr>
+      <th class="users-posts-table">バンドジャンル(必須:複数可)</th>
+      <td><% @ganre.each do |ganre| %>
+      <%= ganre %><%= f.check_box :posts_band_genre_cont, {multiple: true}, ganre, nil %>
+      <% end %></td>
+    <tr>
+    
+  </table>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
 
-
+<% if @test.present? %>
+<% @test.each do |test| %>
+  <%= test.title %>
+<% end %>
+<% end %>
 <div class="flex-container">
   
     <% @users.each do |user| %>

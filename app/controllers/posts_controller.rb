@@ -2,10 +2,26 @@ class PostsController < ApplicationController
   
   before_action :set_user, only: [:posts_show, :users_posts, :users_create_posts]
   before_action :set_post, only: [:posts_show]
-  before_action :all, only: [:users_posts, :users_create_posts, :users_edit_posts]
+  before_action :all, only: [:users_posts, :users_create_posts, :users_edit_posts, :index]
   
   def index
+    
     @users = User.all
+    @search = User.includes(:posts).ransack(params[:q])  #追加
+    
+    if params[:q].present?
+      if params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present? && params[:q][:posts_band_genre_cont].present?
+        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+      elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present?
+        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+      elsif params[:q][:posts_activity_area_cont].present?
+        @test = Post.all.where(activity_area: params[:q][:posts_activity_area_cont])
+      elsif params[:q][:posts_recruitment_part_cont].present? 
+        @post = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+      end
+    else
+     @test = Post.all
+    end
   end
   # モーダルウィンドウ
   def posts_show
