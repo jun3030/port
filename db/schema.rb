@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200302151905) do
+ActiveRecord::Schema.define(version: 20200306025750) do
 
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20200302151905) do
     t.string "third_token"
     t.string "app_secret"
     t.integer "media_count"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

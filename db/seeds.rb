@@ -1,3 +1,5 @@
+
+
 User.create!(name: "Sample User1",
              email: "sample1@email.com",
              password: "password",
@@ -86,7 +88,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["京都府", "群馬県"],
              public_article: true,
              user_id: 1)
              
@@ -95,7 +97,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["京都府", "大阪府"],
              public_article: true,
              user_id: 2)
              
@@ -104,7 +106,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["大阪府", "鳥取県"],
              public_article: true,
              user_id: 3)
 
@@ -113,7 +115,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["滋賀県", "岐阜県"],
              public_article: true,
              user_id: 4)
              
@@ -122,7 +124,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["三重県", "和歌山県"],
              public_article: true,
              user_id: 5)
              
@@ -131,7 +133,7 @@ Post.create!(title: "メンバー募集",
              posts_image: File.open("./public/user_images/Noimage_image.png"),
              recruitment_part: "ギター",
              band_genre: "ロック",
-             activity_area: "京都府",
+             activity_area: ["兵庫県", "石川県"],
              public_article: true,
              user_id: 6)
              

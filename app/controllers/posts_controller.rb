@@ -6,32 +6,38 @@ class PostsController < ApplicationController
   
   def index
     
+    
+    # Post.find(7).activity_area.include?("#{params[:q][:posts_activity_area_cont]}".gsub(/[\[\]\"]/, ""))
     @users = User.all
     @search = User.includes(:posts).ransack(params[:q])  #追加
     
     if params[:q].present? # 検索の条件わけ
+   
       # 1, 2, 3
-      if params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+      if params[:q][:posts_activity_area_matches_any].present? && params[:q][:posts_recruitment_part_matches_any].present? && params[:q][:posts_band_genre_matches_any].present?
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_matches_any]).where(band_genre: params[:q][:posts_band_genre_matches_any])
       # 1, 2
-      elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_recruitment_part_cont].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+      elsif params[:q][:posts_activity_area_matches_any].present? && params[:q][:posts_recruitment_part_matches_any].present?
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_matches_any])
       # 1
-      elsif params[:q][:posts_activity_area_cont].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont])
+      elsif params[:q][:posts_activity_area_matches_any].present? 
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_any])
       # 2, 3
-      elsif params[:q][:posts_recruitment_part_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+      elsif params[:q][:posts_recruitment_part_matches_any].present? && params[:q][:posts_band_genre_matches_any].present?
+        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_matches_any]).where(band_genre: params[:q][:posts_band_genre_matches_any])
       # 2
-      elsif params[:q][:posts_recruitment_part_cont].present? 
-        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_cont])
+      elsif params[:q][:posts_recruitment_part_matches_any].present? 
+        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_matches_any])
       # 1, 3
-      elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_band_genre_cont].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(band_genre: params[:q][:posts_band_genre_cont])
+      elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_band_genre_matches_any].present?
+        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(band_genre: params[:q][:posts_band_genre_matches_any])
       # 3
-      elsif params[:q][:posts_band_genre_cont].present?
-        @posts = Post.all.where(band_genre: params[:q][:posts_band_genre_cont])
+      elsif params[:q][:posts_band_genre_matches_any].present?
+        @posts = Post.all.where(band_genre: params[:q][:posts_band_genre_matches_any])
       end
+      
+      
+    
     else
      @posts = Post.all
     end
@@ -56,6 +62,10 @@ class PostsController < ApplicationController
                        recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], post_age: post_params[:post_age],
                        recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
       if @post.save(context: :users_create_posts)
+        @post[:activity_area] =  @post[:activity_area].gsub(/[\[\]\"]/, "")
+        @post[:recruitment_part] = @post[:recruitment_part].gsub(/[\[\]\"]/, "")
+        @post[:band_genre] = @post[:band_genre].gsub(/[\[\]\"]/, "")
+        @post.save
         flash[:info] = "記事を作成しました。"
         redirect_to posts_index_url
       else
@@ -72,6 +82,10 @@ class PostsController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.find(params[:post_id])
     if  @post.update(post_params)
+       @post[:activity_area] = params[:q][:posts_activity_area_cont]
+        @post[:recruitment_part] = params[:q][:posts_recruitment_part_cont]
+        @post[:band_genre] = params[:q][:posts_band_genre_cont]
+        @post.save
       flash[:success] = "記事情報を更新しました。"
       redirect_to edit_mypage_url
     else
