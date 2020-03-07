@@ -6,30 +6,15 @@ class PostsController < ApplicationController
   
   def index
     
-    
     # Post.find(7).activity_area.include?("#{params[:q][:posts_activity_area_cont]}".gsub(/[\[\]\"]/, ""))
     @users = User.all
     @search = User.includes(:posts).ransack(params[:q])  #追加
     
   if params[:q].present?
-    if params[:q][:posts_activity_area_matches_any].present?
-      params[:q][:posts_activity_area_matches_any].each do |area|
-        @params_area = area
-      end
-    end
-    
-    if params[:q][:posts_recruitment_part_matches_any].present?
-      params[:q][:posts_recruitment_part_matches_any].each do |part|
-        @params_part = part
-      end
-    end
-    
-    if params[:q][:posts_band_genre_matches_any].present? # 検索の条件わけ
-      params[:q][:posts_band_genre_matches_any].each do |genre|
-        @params_genre = genre
-      end
-    end
-      
+     area_array = Post.all.pluck(:activity_area).select { |item| item.include?("#{params[:q][:posts_activity_area_matches_any]}") }
+     part_array = Post.all.pluck(:recruitment_part).select { |item| item.include?("#{params[:q][:posts_recruitment_part_matches_any]}") }
+     ganre_array = Post.all.pluck(:band_genre).select { |item| item.include?("#{params[:q][:posts_band_genre_matches_any]}") }
+     @posts = Post.all.where(activity_area: area_array).where(recruitment_part: part_array).where(band_genre: ganre_array)
   else
      @posts = Post.all
   end
@@ -55,10 +40,7 @@ class PostsController < ApplicationController
                        recruitment_gender: post_params[:recruitment_gender], demosound: post_params[:demosound], public_article: post_params[:public_article], post_age: post_params[:post_age],
                        recruitment_part: post_params[:recruitment_part], band_genre: post_params[:band_genre])
       if @post.save(context: :users_create_posts)
-        @post[:activity_area] =  @post[:activity_area].gsub(/[\[\]\"]/, "")
-        @post[:recruitment_part] = @post[:recruitment_part].gsub(/[\[\]\"]/, "")
-        @post[:band_genre] = @post[:band_genre].gsub(/[\[\]\"]/, "")
-        @post.save
+        
         flash[:info] = "記事を作成しました。"
         redirect_to posts_index_url
       else
@@ -75,10 +57,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.find(params[:post_id])
     if  @post.update(post_params)
-       @post[:activity_area] = params[:q][:posts_activity_area_cont]
-        @post[:recruitment_part] = params[:q][:posts_recruitment_part_cont]
-        @post[:band_genre] = params[:q][:posts_band_genre_cont]
-        @post.save
+      
       flash[:success] = "記事情報を更新しました。"
       redirect_to edit_mypage_url
     else
