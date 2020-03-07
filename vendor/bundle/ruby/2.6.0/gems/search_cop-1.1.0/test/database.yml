@@ -1,0 +1,19 @@
+
+sqlite:
+  adapter: sqlite3
+  database: ":memory:"
+
+mysql:
+  adapter: mysql2
+  database: search_cop
+  username: root
+  encoding: utf8
+
+postgres:
+  host: localhost
+  adapter: postgresql
+  database: search_cop
+  username: search_cop
+  password: secret
+  encoding: utf8
+

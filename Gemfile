@@ -21,6 +21,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'roo'
 gem 'ransack'
+gem 'search_cop'
+
 
 group :development, :test do
   gem 'sqlite3'

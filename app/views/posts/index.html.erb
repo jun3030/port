@@ -27,12 +27,11 @@
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
-
-<% @posts.each do |a| %>
-  <%= a %>
+<% Post.all.each do |post| %>
+<% if post.activity_area.include?("#{@params_area}") %>
+  <%= post.id %>
 <% end %>
- 
-
+<% end %>
 
 <div class="flex-container">
   

@@ -1,0 +1,34 @@
+
+services:
+  - postgresql
+  - mysql
+
+before_script:
+  - mysql -e 'create database search_cop;'
+  - psql -c "create user search_cop password 'secret';" -U postgres
+  - psql -c 'create database search_cop owner search_cop;' -U postgres
+
+matrix:
+  include:
+    - rvm: ruby-head
+      gemfile: gemfiles/4.2.gemfile
+      env: DATABASE=sqlite
+    - rvm: ruby-head
+      gemfile: gemfiles/4.2.gemfile
+      env: DATABASE=mysql
+    - rvm: ruby-head
+      gemfile: gemfiles/5.1.gemfile
+      env: DATABASE=mysql
+    - rvm: ruby-head
+      gemfile: gemfiles/4.2.gemfile
+      env: DATABASE=postgres
+    - rvm: ruby-head
+      gemfile: gemfiles/5.1.gemfile
+      env: DATABASE=postgres
+
+install:
+  - "travis_retry bundle install"
+
+script: "rake test --trace"
+sudo: false
+

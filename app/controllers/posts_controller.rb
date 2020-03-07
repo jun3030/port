@@ -11,36 +11,29 @@ class PostsController < ApplicationController
     @users = User.all
     @search = User.includes(:posts).ransack(params[:q])  #追加
     
-    if params[:q].present? # 検索の条件わけ
-   
-      # 1, 2, 3
-      if params[:q][:posts_activity_area_matches_any].present? && params[:q][:posts_recruitment_part_matches_any].present? && params[:q][:posts_band_genre_matches_any].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_matches_any]).where(band_genre: params[:q][:posts_band_genre_matches_any])
-      # 1, 2
-      elsif params[:q][:posts_activity_area_matches_any].present? && params[:q][:posts_recruitment_part_matches_any].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_cont]).where(recruitment_part: params[:q][:posts_recruitment_part_matches_any])
-      # 1
-      elsif params[:q][:posts_activity_area_matches_any].present? 
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_matches_any])
-      # 2, 3
-      elsif params[:q][:posts_recruitment_part_matches_any].present? && params[:q][:posts_band_genre_matches_any].present?
-        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_matches_any]).where(band_genre: params[:q][:posts_band_genre_matches_any])
-      # 2
-      elsif params[:q][:posts_recruitment_part_matches_any].present? 
-        @posts = Post.all.where(recruitment_part: params[:q][:posts_recruitment_part_matches_any])
-      # 1, 3
-      elsif params[:q][:posts_activity_area_cont].present? && params[:q][:posts_band_genre_matches_any].present?
-        @posts = Post.all.where(activity_area: params[:q][:posts_activity_area_cont]).where(band_genre: params[:q][:posts_band_genre_matches_any])
-      # 3
-      elsif params[:q][:posts_band_genre_matches_any].present?
-        @posts = Post.all.where(band_genre: params[:q][:posts_band_genre_matches_any])
+  if params[:q].present?
+    if params[:q][:posts_activity_area_matches_any].present?
+      params[:q][:posts_activity_area_matches_any].each do |area|
+        @params_area = area
       end
-      
-      
-    
-    else
-     @posts = Post.all
     end
+    
+    if params[:q][:posts_recruitment_part_matches_any].present?
+      params[:q][:posts_recruitment_part_matches_any].each do |part|
+        @params_part = part
+      end
+    end
+    
+    if params[:q][:posts_band_genre_matches_any].present? # 検索の条件わけ
+      params[:q][:posts_band_genre_matches_any].each do |genre|
+        @params_genre = genre
+      end
+    end
+      
+  else
+     @posts = Post.all
+  end
+  
   end
   # モーダルウィンドウ
   def posts_show
