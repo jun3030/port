@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   
   
-  before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram]
+  before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram, :destroy]
   before_action :set_instagram_create, only: [:edit_mypage]
   before_action :create_footprint, only: [:edit_mypage]
   before_action :user_profile_set, only: [:edit_mypage]
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 20)
   end
   
   def edit_profile
@@ -140,7 +140,11 @@ class UsersController < ApplicationController
     end
   end
   
- 
+  def destroy
+    @user.destroy
+    flash[:info] = "ユーザーを削除しました。"
+    redirect_to users_url
+  end
   
   private
   

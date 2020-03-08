@@ -23,17 +23,22 @@
         <%= link_to "バンドメンバー募集", root_path, id: "logo" %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-          	<li><%= link_to "投稿一覧", posts_index_path  %></li>
             
             <% if logged_in? %>
-            <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-            <li><%= link_to "プロフィール設定", users_profile_path(current_user) %></li>
-            <li><%= link_to "マイページ", edit_mypage_path(current_user) %></li>
-            <li><%= link_to "記事を投稿する", user_posts_path(current_user) %></li>
-            <li></li>
+              <% if current_user.id == 1 %>
+              <li><%= link_to "ユーザー一覧", users_path  %></li>
+              <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+              <% end %>
+              <li><%= link_to "投稿一覧", posts_index_path  %></li>
+              <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+              <li><%= link_to "プロフィール設定", users_profile_path(current_user) %></li>
+              <li><%= link_to "マイページ", edit_mypage_path(current_user) %></li>
+              <li><%= link_to "記事を投稿する", user_posts_path(current_user) %></li>
+              <li></li>
             <% else %>
-            <li><%= link_to "ログイン", login_path %></li>
-            <li><%= link_to "新規登録", new_user_path %></li>
+              <li><%= link_to "ログイン", login_path %></li>
+              <li><%= link_to "新規登録", new_user_path %></li>
+          
             <% end %>
           </ul>
         </nav>

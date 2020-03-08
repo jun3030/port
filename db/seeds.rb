@@ -23,6 +23,7 @@ User.create!(name: "Sample User1",
              prefecture: "北海道",
              genre: 8,
              responsible_part: "ギター",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
              
 
@@ -37,6 +38,7 @@ User.create!(name: "Sample User2",
              prefecture: "京都府",
              genre: 8,
              responsible_part: "ドラム",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
              
 User.create!(name: "Sample User3",
@@ -50,6 +52,7 @@ User.create!(name: "Sample User3",
              prefecture: "北海道",
              genre: 8,
              responsible_part: "ギター",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
              
 User.create!(name: "Sample User4",
@@ -63,6 +66,7 @@ User.create!(name: "Sample User4",
              prefecture: "福岡県",
              genre: 8,
              responsible_part: "ギター",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
              
 
@@ -77,6 +81,7 @@ User.create!(name: "Sample User5",
              prefecture: "北海道",
              genre: 8,
              responsible_part: "ギター",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
              
 User.create!(name: "Sample User6",
@@ -90,6 +95,7 @@ User.create!(name: "Sample User6",
              prefecture: "大阪府",
              genre: 8,
              responsible_part: "ベース",
+             self_introduction: "よろしくお願いします",
              image: File.open("./public/user_images/default.png"))
 
              

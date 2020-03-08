@@ -9,7 +9,5 @@ module ApplicationHelper
     text
   end
   
-  def link(url)
-     
-  end
+  
 end
