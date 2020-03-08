@@ -11,6 +11,10 @@ ja:
           password_confirmation: パスワード再入力
           created_at: 作成日
           updated_at: 更新日
+          age: 年齢
+          sex: 性別
+          self_introduction: 自己紹介文
+          
         post:
           title: 記事タイトル
           content: 記事内容

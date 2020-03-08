@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   
+  
   before_action :set_user, only: [:show, :edit_profile, :update_profile, :edit_mypage, :update_mypage, :edit_picture, :update_picture, :upload_instagram]
   before_action :set_instagram_create, only: [:edit_mypage]
   before_action :create_footprint, only: [:edit_mypage]
-  
+  before_action :user_profile_set, only: [:edit_mypage]
   
   def new
     @user = User.new
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
                            favorite_artist: user_params[:favorite_artist], self_introduction: user_params[:self_introduction]}
       if @user.save(context: :update_profile)
         flash[:success] = "ユーザー情報を更新しました。"
-        redirect_to users_profile_url(current_user)
+        redirect_to edit_mypage_url(current_user)
       else
         render :edit_profile
       end
@@ -189,5 +190,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def user_profile_set
+    unless current_user.age.present? && current_user.sex.present? && current_user.self_introduction.present?
+      flash[:info] = "プロフィールを設定してください。"
+      redirect_to users_profile_url
+    end
+  end
  
 end
