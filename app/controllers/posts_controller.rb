@@ -49,7 +49,7 @@ class PostsController < ApplicationController
         render :users_posts
       end
   end
-  
+  # 記事の編集ページ
   def users_edit_posts
     @user = User.find(params[:id])
     @post = Post.find(params[:post_id])
@@ -66,6 +66,11 @@ class PostsController < ApplicationController
       flash[:danger] = "更新できませんでした。"
       render :users_edit_posts
     end
+  end
+  
+  def users_confirm_posts
+    @user = User.find(params[:id])
+    @post = Post.find(params[:post_id])
   end
   
   def users_destroy_posts

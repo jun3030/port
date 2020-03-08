@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture # 画像編集
   patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture # 画像アップロード
   
+  get 'users/:id/posts/:post_id/users_confirm_posts', to: 'posts#users_confirm_posts', as: :confirm_posts #　userの記事を確認するページ
   get 'users/:id/posts/:post_id/users_edit_posts', to: 'posts#users_edit_posts', as: :edit_posts #　記事を編集するページ
   patch 'users/:id/posts/:post_id/users_update_posts', to: 'posts#users_update_posts', as: :update_posts #　記事を更新
   delete 'users/:id/posts/:post_id/users_delete_posts', to: 'posts#users_destroy_posts', as: :delete_posts #　記事を削除

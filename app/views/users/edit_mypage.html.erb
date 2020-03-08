@@ -28,6 +28,7 @@
       </a>
       <ul class="dropdown-menu">
         <li>      
+        <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
         <!-- マイページにinstagramの写真、動画を追加する -->
         <%= form_with(model: @user, url: upload_instagram_path, method: :patch, local: true) do |f| %>
         
@@ -45,6 +46,7 @@
           
           <%= f.submit "データを取得", class: "instagram-btn" %>
         <% end %>
+        <% end %>
         </li>
       </ul>
     </li>
@@ -57,22 +59,23 @@
     <div>コンテンツを追加</div>
     </a>
     <ul class="dropdown-menu">
-      <li>      
-      <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2><hr>
-      <!-- マイページに写真、動画を追加する -->
-      
-        <%= form_with(model: @url, url: user_add_mypage_content_create_path(@user.id), local: true) do |f| %>
-            
-            <%= f.label :mypage_image %><br>
-            <%= f.file_field :mypage_image %><br>
-            
-            <%= f.label :mypage_movie %><br>
-            <%= f.file_field :mypage_movie %><br>
-            
-            <%= f.submit "投稿する" %>
-        <% end %> 
-      
-      </li>
+      <li>
+        <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+        <h2>※画像か動画、どちらか1つを選択し投稿してください。</h2><hr>
+        <!-- マイページに写真、動画を追加する -->
+        
+          <%= form_with(model: @url, url: user_add_mypage_content_create_path(@user.id), local: true) do |f| %>
+              
+              <%= f.label :mypage_image %><br>
+              <%= f.file_field :mypage_image %><br>
+              
+              <%= f.label :mypage_movie %><br>
+              <%= f.file_field :mypage_movie %><br>
+              
+              <%= f.submit "投稿する" %>
+          <% end %> 
+        <% end %>
+       </li>
     </ul>
   </li>
   </div>
@@ -85,12 +88,15 @@
       </a>
         <ul class="dropdown-menu">
           <li>
-           <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+           
            　<strong>記事リスト</strong><hr>
-           　<% current_user.posts.each do |post| %>
-               <%= link_to "#{post.title}", edit_posts_path(@user, post) %><hr>
+           　 <% @user.posts.each do |post| %>
+             　<% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+             　   <%= link_to "#{post.title}", edit_posts_path(@user, post) %><hr>
+             <% else %>
+                 <%= link_to "#{post.title}", confirm_posts_path(@user, post) %><hr>
+               <% end %>
              <% end %>
-           <% end %>    
           </li>  
         </ul>
     </li>

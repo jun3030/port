@@ -9,10 +9,7 @@
 
 <%= form_with(model: @user, url: update_profile_path, local: true) do |f| %>
 <table class="table table-bordered table-striped profile-table">
-  <tr>
-    <th>使用目的</th>
-    <td><%= f.text_field :purpose_of_use %></td>
-  </tr>
+  
   <tr>
     <th>名前<span class="required">必須</span></th>
     <td><%= f.text_field :name %></td>
