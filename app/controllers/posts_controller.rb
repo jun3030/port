@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :all, only: [:users_posts, :users_create_posts, :users_edit_posts, :index]
   
   def index
-   @users = User.all
+   @users = User.paginate(page: params[:page], per_page: 9 )
     # Post.find(7).activity_area.include?("#{params[:q][:posts_activity_area_cont]}".gsub(/[\[\]\"]/, ""))
   
     @search = User.includes(:posts).ransack(params[:q])  #追加
@@ -14,11 +14,11 @@ class PostsController < ApplicationController
      area_array = Post.all.pluck(:activity_area).select { |item| item.include?("#{params[:q][:posts_activity_area_matches_any]}") }
      part_array = Post.all.pluck(:recruitment_part).select { |item| item.include?("#{params[:q][:posts_recruitment_part_matches_any]}") }
      ganre_array = Post.all.pluck(:band_genre).select { |item| item.include?("#{params[:q][:posts_band_genre_matches_any]}") }
-     @posts = Post.all.where(activity_area: area_array).where(recruitment_part: part_array).where(band_genre: ganre_array)
+     @posts = Post.all.where(activity_area: area_array).where(recruitment_part: part_array).where(band_genre: ganre_array).paginate(page: params[:page], per_page: 9 )
    
   else
     
-     @posts = Post.all
+     @posts = Post.paginate(page: params[:page], per_page: 9 )
   end
   
   end

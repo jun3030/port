@@ -6,21 +6,21 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false">
-    条件で検索
+      <div class="btn btn-primary">条件検索</div>
   </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown1">
     <%= search_form_for(@search, url: posts_index_path)  do |f| %>
     <div class="drop-menu">
       <div class="menu-nakami">活動地域<br><%= f.select :posts_activity_area_matches_any, options_for_select(@area), {include_blank: '指定しない'} %></div><hr>
-      <div>募集楽器パート<%= f.select :posts_recruitment_part_matches_any, options_for_select(@part), {include_blank: '指定しない'} %></div><hr>
-      <div>バンドジャンル<%= f.select :posts_band_genre_matches_any, options_for_select(@ganre), {include_blank: '指定しない'} %></div><hr>
+      <div class="menu-nakami">募集楽器パート<%= f.select :posts_recruitment_part_matches_any, options_for_select(@part), {include_blank: '指定しない'} %></div><hr>
+      <div class="menu-nakami">バンドジャンル<%= f.select :posts_band_genre_matches_any, options_for_select(@ganre), {include_blank: '指定しない'} %></div><hr>
       <div class="actions"><%= f.submit "Search" %></div>
     </div>
     <% end %>
   </div>
 </div>
 
-
+<div class="paginate"><%= will_paginate %></div><hr>
 
 
 
