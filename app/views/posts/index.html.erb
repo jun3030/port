@@ -1,73 +1,77 @@
 <h2>投稿一覧</h2>
 
-<%= search_form_for(@search, url: posts_index_path)  do |f| %>
- <table>
-    <tr>
-      <th class="users-posts-table">活動地域(必須:複数可)</th>
-      <td>
-      <%= f.select :posts_activity_area_matches_any, options_for_select(@area), {include_blank: '指定しない'} %>
-     </td>
-    </tr>
+<div class="dropdown">
+  <button type="button" id="dropdown1"
+      class="btn btn-secondary dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+    条件で検索
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown1">
+    <%= search_form_for(@search, url: posts_index_path)  do |f| %>
+    <div class="drop-menu">
+      <div class="menu-nakami">活動地域<br><%= f.select :posts_activity_area_matches_any, options_for_select(@area), {include_blank: '指定しない'} %></div><hr>
+      <div>募集楽器パート<%= f.select :posts_recruitment_part_matches_any, options_for_select(@part), {include_blank: '指定しない'} %></div><hr>
+      <div>バンドジャンル<%= f.select :posts_band_genre_matches_any, options_for_select(@ganre), {include_blank: '指定しない'} %></div><hr>
+      <div class="actions"><%= f.submit "Search" %></div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+            
+    
+
+<div class="post-container">
+  <% @posts.each do |post| %>
+    <% user = User.find(post.user_id) %>
   
-    <tr>
-      <th class="users-posts-table">募集楽器パート(必須:複数可)</th>
-      <td>
-      <%= f.select :posts_recruitment_part_matches_any, options_for_select(@part), {include_blank: '指定しない'} %>
-      </td>
-    <tr>
-    
-    <tr>
-      <th class="users-posts-table">バンドジャンル(必須:複数可)</th>
-      <td><%= f.select :posts_band_genre_matches_any, options_for_select(@ganre), {include_blank: '指定しない'} %></td>
-    <tr>
-    
-  </table>
-  <div class="actions"><%= f.submit "Search" %></div>
-<% end %>
-
-
-<% @posts.each do |a| %>
-  <%= a.id %>
-<% end %>
-
-
-<div class="flex-container">
-  
-    <% @users.each do |user| %>
-    
-    <% user.posts.each do |post| %>
-    <div class="user-posts">
-      <div class="flex-item-video">
-      <% if post.public_article == true %>
-        <% if post.from_mypage_data? %>
-          <% if "mp4".in?(post.from_mypage_data) %>
-            <div class="video"><%= video_tag post.from_mypage_data, muted: true, controls: true , :size => "350x260"%></div>
+      <div class="post-item-video">
+        <% if post.public_article == true %>
+          <% if post.from_mypage_data? %>
+            <% if "mp4".in?(post.from_mypage_data) %>
+              <div class="video"><%= video_tag post.from_mypage_data, muted: true, controls: true , :size => "350x260"%></div>
+            <% else %>
+              <div class="video"><%= image_tag post.from_mypage_data, :size => "350x260"%></div>
+            <% end %>
           <% else %>
-            <div class="video"><%= image_tag post.from_mypage_data, :size => "350x260"%></div>
+            <% if post.video?  %>
+                <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
+            <% else %>
+                <div class="video"><%= image_tag post.posts_image, :size => "350x260"%></div>
+            <% end %>
           <% end %>
-        <% else %>
-          <% if post.video?  %>
-              <div class="video"><%= video_tag post.video, muted: true, controls: true , :size => "350x260"%></div>
-          <% else %>
-              <div class="video"><%= image_tag post.posts_image, :size => "350x260"%></div>
-          <% end %>
-        <% end %>
-       
-      </div>
-        <div class="comment">
-          <div class="flex-item-left">
-            <div><%= image_tag user.image, :size => '50x50' %></div>
+          
+          
+        <div class="post-info">
+          <div class="user-syasinn">
+            <%= image_tag user.image, :size => '50x50' %>
           </div>
-          <div class="flex-itme-right">
-              <div class="post-title"><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "" %></div>
-              <div class="user-name"><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
-              <div class="posted-date">投稿時間:<%= post.updated_at.in_time_zone('Tokyo').strftime("%Y/%-m/%-d %-H時%-M分") %></div>
+          <div class="user-test">
+              <div><%= link_to post.title, user_posts_show_path(user, post.id), remote: true, class: "" %></div>
+              <div><%= user.name %>(<%= user.prefecture %>,<%= user.age %><%= user.sex %>)</div>
+              <div>投稿時間:<%= post.updated_at.in_time_zone('Tokyo').strftime("%Y/%-m/%-d %-H時%-M分") %></div>
           </div>
-        <% end %>
         </div>
-      </div>
-    <% end %>
-    <% end %>
+      </div> <!-- flex-item-video -->
+    
+      
+      
+      
+      
+      
+      
+        <% end %> <!-- post.public_article == true -->
+  <% end %>
 </div>
 
 
