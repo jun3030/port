@@ -10,6 +10,7 @@ User.create!(name: "Admin User",
              genre: 8,
              responsible_part: "ギター",
              image: File.open("./public/user_images/default.png"),
+             self_introduction: "よろしくお願いします",
              admin: true)
 
 User.create!(name: "Sample User1",

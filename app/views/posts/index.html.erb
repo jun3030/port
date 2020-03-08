@@ -32,9 +32,11 @@
     
 
 <div class="post-container">
+  
   <% @posts.each do |post| %>
     <% user = User.find(post.user_id) %>
-  
+      <% if user.admin? %>
+      <% else %>
       <div class="post-item-video">
         <% if post.public_article == true %>
           <% if post.from_mypage_data? %>
@@ -69,7 +71,7 @@
       
       
       
-      
+      <% end %>
         <% end %> <!-- post.public_article == true -->
   <% end %>
 </div>

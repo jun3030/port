@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   patch 'users/:id/upload_instagram', to: 'users#upload_instagram', as: :upload_instagram # instagram アップロード
   get 'users/:id/edit_picture', to: 'users#edit_picture', as: :edit_picture # 画像編集
   patch 'users/:id/update_picture', to: 'users#update_picture', as: :update_picture # 画像アップロード
+  delete 'users/:id/withdraw', to: 'users#withdraw', as: :withdraw # 退会処理
+  
   
   get 'users/:id/posts/:post_id/users_confirm_posts', to: 'posts#users_confirm_posts', as: :confirm_posts #　userの記事を確認するページ
   get 'users/:id/posts/:post_id/users_edit_posts', to: 'posts#users_edit_posts', as: :edit_posts #　記事を編集するページ

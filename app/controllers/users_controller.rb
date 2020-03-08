@@ -146,6 +146,17 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def withdraw
+    unless current_user.admin?
+      current_user.destroy
+      flash[:info] = "退会しました。"
+      redirect_to root_url
+    else
+      flash[:danger] = "管理ユーザーは削除できません。"
+      redirect_to root_url
+    end
+  end
+  
   private
   
   def set_user
