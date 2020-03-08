@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    @user[:image] = "default.png"
+    @user.update(image: File.open("./public/user_images/default.png"))
     if @user.save
       log_in @user # 保存成功後、ログインします。
       flash[:success] = '新規作成に成功しました。'

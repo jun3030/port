@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, on: :create, length: { minimum: 6 }
   
-  validates :purpose_of_use, presence: true, on: :update_profile
+  
   validates :prefecture, presence: true, on: :update_profile
   validates :responsible_part, presence: true, on: :update_profile
   validates :age, presence: true, on: :update_profile
