@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+
 .profile-btn {
     background: #005151;
     color: #fff !important;
@@ -367,4 +368,57 @@ div.scr{
 
 .delete-btn {
     text-align: right;
+}
+
+
+
+
+
+@media all and (min-width: 500px) {
+  .wrapper {
+    display: flex;
+  }
+}
+
+.outer {
+    display:table;
+  width:100%;
+  height:600px;
+  
+  text-align:center;
+  /*background: pink; */
+}
+
+
+.home-title {
+    color: white;
+    display:table-cell;
+    vertical-align:middle;
+    
+}  
+
+.column {
+  height: 100vh;
+  width: 100%;
+}
+.cat1 {
+  background: url(/user_images/stock-photo-selective-focus-microphone-and-blur-musical-equipment-guitar-bass-drum-piano-background-346418642.jpg) no-repeat top center;
+  background-size: cover;
+}
+.cat2 {
+    /*background: orange;*/
+ 
+}
+
+.form-oya {
+    display:table;
+    width:100%;
+    height:700px;
+    text-align:center;
+}
+
+.form-ichi {
+    
+    display:table-cell;
+    vertical-align:middle;
 }

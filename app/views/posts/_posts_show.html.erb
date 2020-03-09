@@ -23,7 +23,7 @@
     <div class="split-item split-right">
         <div class="split-right__inner">
            <div class="modal-user-name">
-             <%= image_tag @user.image, size: 35 %><%= link_to "#{@user.name}#{@user.prefecture}#{@user.age}#{@user.sex}", edit_mypage_path(@user) %>
+             <%= image_tag @user.image, size: 35 %><%= link_to "#{@user.name}さん(#{@user.prefecture},#{@user.age}歳,#{@user.sex})", edit_mypage_path(@user) %>
            </div>
            <div class="modal-basicinfo">
              

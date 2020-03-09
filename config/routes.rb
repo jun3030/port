@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#top'
+  root 'sessions#new'
    # ログイン機能
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'

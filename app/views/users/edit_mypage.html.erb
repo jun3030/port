@@ -1,10 +1,10 @@
 <div class="container">
 <div class="comment">
   <div class="comment-left">
-    <div class="user-image"><%= image_tag @user.image, :size => '150x150' %></div>
+    <div class="user-image"><%= image_tag @user.image, :size => '230x230' %></div>
   </div>
   <div class="comment-right">
-    <h1 class="user-name-mypage"><%= @user.name %><span class="user-info">(<%= @user.prefecture %>,<%= @user.age %><%= @user.sex %>)</span></h1>
+    <h1 class="user-name-mypage"><%= @user.name %><span class="user-info">(<%= @user.prefecture %>,<%= @user.age %>歳,<%= @user.sex %>)</span></h1>
     <ul class="test">
       <li>担当パート:<%= @user.responsible_part %></li>
       <li>好きなジャンル:<%= @user.genre %></li>
@@ -29,6 +29,7 @@
       <ul class="dropdown-menu">
         <li>      
         <% if @user.id == current_user.id %> <!-- ログイン中のユーザーだった場合  -->
+        <h2>マイページにinstagramの写真、動画を追加します。</h2><hr>
         <!-- マイページにinstagramの写真、動画を追加する -->
         <%= form_with(model: @user, url: upload_instagram_path, method: :patch, local: true) do |f| %>
         
@@ -121,7 +122,7 @@
                 <% @favorite_users_id.each do |id| %>
                   
                   <span>
-                    <%= image_tag User.find(id).image, :size => "30x30" %><%= link_to "#{User.find(id).name}", edit_mypage_path(User.find(id)) %>
+                    <%= image_tag User.find(id).image, :size => "30x30" %><%= link_to "#{User.find(id).name}さん", edit_mypage_path(User.find(id)) %>
                     <%= link_to "　解除", user_destroy_path(current_user, User.find(id)), method: :delete, data: { confirm: 'お気に入りを解除しますか?' } %>
                   </span>
                   <hr>
