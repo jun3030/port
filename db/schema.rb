@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20200306025750) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+
   create_table "favorite_folders", force: :cascade do |t|
     t.integer "favorite_user"
     t.integer "user_id"
